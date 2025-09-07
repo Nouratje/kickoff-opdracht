@@ -16,13 +16,13 @@ Nb. Door *open* toe te voegen aan een *details* element kun je deze standaard op
   <summary>uitwerken voor kick-off werkgroep</summary>
 
   ### Auteur:
-  Sanne 't Hooft (vervangen door jouw naam)
+  Nour Raian
 
-  #### Je startniveau:
-  hier je startniveau (kies uit zwart, rood óf blauw)
+  #### mijn startniveau:
+  rood óf blauw=paars 
 
-  #### Je focus:
-  hier je focus (kies uit responsive óf surface plane)
+  #### mijn focus:
+  Responsive
  
 </details>
 
@@ -30,21 +30,21 @@ Nb. Door *open* toe te voegen aan een *details* element kun je deze standaard op
 
 
 
-## Je website
+## mijn website
 
 <details open>
   <summary>uitwerken voor kick-off werkgroep</summary>
 
-  ### Je opdracht:
-  link naar de website die je gaat namaken óf de naam/omschrijving van je eigen ontwerp
+  ### mijn opdracht:
+  (https://www.chupachups.nl/)/De Chupa Chups-website heeft een vrolijke en kleurrijke uitstraling met felle tinten die passen bij de bekende lolly’s. Bezoekers vinden er informatie over smaken, geschiedenis en acties. De stijl is speels en gericht op plezier.
 
   #### Screenshot(s) van de eerste pagina (small screen): 
-  hier de naam van de pagina  
-  <img src="readme-images/dummy-plaatje.jpg" width="375px" alt="omschrijving van de pagina">
+  Chupachups 
+  <img src="readme-images/website.png" width="375px" alt="Deze Chupa Chups-pagina heeft een speelse en kleurrijke vormgeving met de merk­kleuren rood en geel. Links staat een grote afbeelding van een lachende vrouw met een lolly, wat de vrolijke sfeer benadrukt. Rechtsboven bevindt zich een navigatiemenu met opties zoals Producten, Nieuws, Geschiedenis en FAQ. In het midden staat de opvallende slogan “FOREVER FUN!”, vergezeld van een korte tekst over de meer dan 100 smaken. Onderaan staat een gele call-to-action knop “ONTDEK MEER” die de gebruiker uitnodigt verder te klikken.">
 
   #### Screenshot(s) van de tweede pagina (small screen):
-  hier de naam van de pagina  
-  <img src="readme-images/dummy-plaatje.jpg" width="375px" alt="omschrijving van de pagina">
+  Chupachups 
+  <img src="readme-images/2epagina.png" width="375px" alt="Deze productpagina van Chupa Chups heeft een frisse en speelse opmaak met de merk­kleuren roze, geel en wit. Links staat een grote productafbeelding van de Melody Pops-lolly’s, die meebeweegt tijdens het scrollen (parallax-effect). Rechts staat een witte contentbox met de productnaam Melody Pops, een korte beschrijving en aanvullende informatie over ingrediënten en allergenen. Onderaan in de box bevindt zich een opvallende gele knop met “KOPEN” als call-to-action, naast een link naar meer productinformatie. Bovenaan blijft het logo en menu zichtbaar voor navigatie.">
  
 </details>
 
@@ -68,14 +68,16 @@ Nb. Door *open* toe te voegen aan een *details* element kun je deze standaard op
   <summary>uitwerken na afloop 3<sup>e</sup> werkgroep</summary>
 
   ### de hele pagina: 
-  <img src="readme-images/dummy-plaatje.jpg" width="375px" alt="breakdown van de hele pagina">
+  <img src="readme-images/pagina2.png" width="375px" alt="breakdown van de hele pagina">
+  <img src="readme-images/pagina1.png" width="375px" alt="breakdown van de hele pagina">
 
-  ### dynamisch deel (bijv menu): 
-  <img src="readme-images/dummy-plaatje.jpg" width="375px" alt="breakdown van een dynamisch deel">
+  ### dynamisch deel (menu): 
+  <img src="readme-images/animatie.mp4" width="375px" alt="breakdown van een dynamisch deel">
 
-  ### wellicht nog een dynamisch deel (bijv filter): 
-  <img src="readme-images/dummy-plaatje.jpg" width="375px" alt="breakdown van nog een dynamisch deel">
-
+  ### wellicht nog een dynamisch deel (slide-in effect en Visueel hover-effect wanneer de muis over een product beweegt product die mee beweegt bij het scrollen ): 
+  <img src="readme-images/hover-effect-en-slide-in effect.mp4" width="375px" alt="breakdown van nog een dynamisch deel">
+  <img src="readme-images/product-die-meebeweegt.mp4" width="375px" alt="breakdown van nog een dynamisch deel">
+  <img src="readme-images/breakdownschets.png" width="375px" alt="breakdownschets van de website die ik ga namaken">
 </details>
 
 
