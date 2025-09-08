@@ -72,11 +72,11 @@ Nb. Door *open* toe te voegen aan een *details* element kun je deze standaard op
   <img src="readme-images/pagina1.png" width="375px" alt="breakdown van de hele pagina">
 
   ### dynamisch deel (menu): 
-  <img src="readme-images/animatie.mp4" width="375px" alt="breakdown van een dynamisch deel">
+  <img src="readme-images/menu.gif" width="375px" alt="breakdown van een dynamisch deel">
 
   ### wellicht nog een dynamisch deel (slide-in effect en Visueel hover-effect wanneer de muis over een product beweegt product die mee beweegt bij het scrollen ): 
-  <img src="readme-images/hover-effect-en-slide-in effect.mp4" width="375px" alt="breakdown van nog een dynamisch deel">
-  <img src="readme-images/product-die-meebeweegt.mp4" width="375px" alt="breakdown van nog een dynamisch deel">
+  <img src="readme-images/hover-effect-en-slide-in effect.gif" width="375px" alt="breakdown van nog een dynamisch deel">
+  <img src="readme-images/product-die-meebeweegt.gif" width="375px" alt="breakdown van nog een dynamisch deel">
   <img src="readme-images/breakdownschets.png" width="375px" alt="breakdownschets van de website die ik ga namaken">
 </details>
 
