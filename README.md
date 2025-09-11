@@ -57,7 +57,7 @@ Nb. Door *open* toe te voegen aan een *details* element kun je deze standaard op
 
   ### Bevindingen
   Lijst met je bevindingen die in de test naar voren kwamen:
-  <img src="readme-images/regel-die-gelezen-wordt.png" width="375px" alt="die bovenste lijn in de top van pagina wordt door de verteller als regel gelezen.Een screenreader-gebruiker verwacht alleen nuttige inhoud">
+  <img src="readme-images/regel-die-gelezen-wordt.png" width="375px" alt=""> die bovenste lijn in de top van pagina wordt door de verteller als regel gelezen.Een screenreader-gebruiker verwacht alleen nuttige inhoud
 
   <img src="readme-images/h1.png" width="375px" alt="Het beeld van de lachende vrouw met een lolly wordt niet automatisch beschreven door de verteller tenzij er een alt-tekst is toegevoegd.">
 
@@ -77,7 +77,7 @@ Nb. Door *open* toe te voegen aan een *details* element kun je deze standaard op
 
   <img src="readme-images/voedingswaarden.png" width="375px" alt="De screenreader negeert dit tabel.">
 
-  <img src="readme-images/geen-actieknop.png" width="375px" alt="De screenreader geeft aan dat er geen actiesknoppen zijn in dit pagina terwijl er wel is. Deze knop werkt met de muis, maar is technisch geen knop. Voor screenreaders wordt hij niet als actie herkend, waardoor blinde gebruikers de actie niet kunnen uitvoeren.">
+  <img src="readme-images/geen-actieknop.png" width="375px" alt="">De screenreader geeft aan dat er geen actiesknoppen zijn in dit pagina terwijl er wel is. Deze knop werkt met de muis, maar is technisch geen knop. Voor screenreaders wordt hij niet als actie herkend, waardoor blinde gebruikers de actie niet kunnen uitvoeren.
 
 </details>
 
