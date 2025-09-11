@@ -57,6 +57,27 @@ Nb. Door *open* toe te voegen aan een *details* element kun je deze standaard op
 
   ### Bevindingen
   Lijst met je bevindingen die in de test naar voren kwamen:
+  <img src="readme-images/regel-die-gelezen-wordt.png" width="375px" alt="die bovenste lijn in de top van pagina wordt door de verteller als regel gelezen.Een screenreader-gebruiker verwacht alleen nuttige inhoud">
+
+  <img src="readme-images/h1.png" width="375px" alt="Het beeld van de lachende vrouw met een lolly wordt niet automatisch beschreven door de verteller tenzij er een alt-tekst is toegevoegd.">
+
+  <img src="readme-images/decoratie.png" width="375px" alt="De decoratieve cirkel (wit rondje rechts van de tekst “LOLLY’S”) wordt door de screenreader voorgelezen alsof het een betekenisvol element is.Voor gebruikers die blind of slechtziend zijn, geeft dat ruis en verwarring: ze horen iets wat eigenlijk geen inhoudelijke waarde heeft">
+  
+  <img src="readme-images/niks.png" width="375px" alt="Dit element heeft geen betekenis voor de gebruiker, maar wordt toch voorgelezen door de screenreader.">
+
+  <img src="readme-images/niks2.png" width="375px" alt="Decoratieve blokken/figuren horen genegeerd te worden,want ze dragen niets bij aan de inhoud.">
+
+  <img src="readme-images/shuif-pagina.png" width="375px" alt="Onnodige tab-stops, rommelige leesvolgorde, visuele focus springt naar grote containers.">
+
+  <img src="readme-images/pijl-afbeelding.png" width="375px" alt="Screenreaders zien dit pijl als afbeelding. Blinde gebruikers krijgen dus niet door dat dit bedoeld is om naar een antwoord te navigeren">
+
+  <img src="readme-images/producten-info.png" width="375px" alt="Afbeelding wordt voorgelezen, Titel THE BEST OF WHEEL 200ST wordt netjes gelezen en Knop TOON PRODUCT wordt ook gelezen als actie.">
+
+  <img src="readme-images/fruit.png" width="375px" alt="van dit pagina is dat de enige wat wordt voorgelezen en verder niks meer">
+
+  <img src="readme-images/voedingswaarden.png" width="375px" alt="De screenreader negeert dit tabel.">
+
+  <img src="readme-images/geen-actieknop.png" width="375px" alt="De screenreader geeft aan dat er geen actiesknoppen zijn in dit pagina terwijl er wel is. Deze knop werkt met de muis, maar is technisch geen knop. Voor screenreaders wordt hij niet als actie herkend, waardoor blinde gebruikers de actie niet kunnen uitvoeren.">
 
 </details>
 
