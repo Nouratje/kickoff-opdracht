@@ -1,0 +1,179 @@
+:root {
+  /* Kleuren */
+  --color-red: #c20e1a;
+  --color-pink: #e80b4a;
+  --color-yellow: #ffe000;
+  --color-white: #ffffff;
+
+  /* Typografie */
+  --font-title: 'Passion One', 'Bowlby One SC', sans-serif;
+  --font-body: 'Raleway', sans-serif;
+
+  /* Layout */
+  --radius: 20px;
+  --card-width: 280px;
+  --gap: 1rem;
+}
+
+body {
+  background-color: var(--color-red);
+}
+
+header section {
+  display: grid;
+  position: relative;
+}
+
+header section img:nth-of-type(1) {
+  width: 30%;
+  position: absolute; 
+  top: 1rem;          
+  left: 1rem;
+}
+
+/* Foto van de vrouw */
+header section img:nth-of-type(2) {
+  width: 100%;          
+  border-radius: 50%;
+  object-fit: cover; 
+  object-position: start;
+}
+
+@media (min-width: 768px) {
+  header section img:nth-of-type(2) {
+    position: relative;
+    top: -9px;
+    right: 30%;
+    grid-column: 1 / 7; 
+    width: 80%;         
+
+  }
+}
+
+header section button {
+  position: fixed;
+  top: -10px;      
+  right: 0; 
+  background: #ffed00;
+  text-align: left;
+  color: #c20e1a;
+  font-family: 'Passion One', 'Bowlby One SC', sans-serif;
+  font-size: 1.3rem;
+  padding: 1rem 4rem 1.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  z-index: 4;
+}
+
+header section button:hover {
+  background: gold;
+}
+
+
+
+
+
+
+
+
+h1:nth-of-type(1){
+  text-align: center;
+  font-family: 'Passion One', 'Bowlby One SC', sans-serif;
+  font-size: 60px;
+  color: #ffffff;
+  margin-top: 0;
+}
+
+
+
+main p:nth-of-type(1){
+
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    margin:0;
+    margin-top:-40px
+}
+
+/*ontdek meer button*/
+main section:nth-of-type(1) button {
+  position: relative;
+  background: none;            /* achtergrond weghalen */
+  border: none;
+  color: #c20e1a;;
+  font-family: 'Passion One', 'Bowlby One SC', sans-serif;
+  font-weight: bold;
+  font-size: 2em;
+  padding: 20px 40px;
+  padding-top: 15%;
+  cursor: pointer;
+}
+
+/* Het gele vlak met de schuine hoeken */
+main section:nth-of-type(1) button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #ffe000;
+  clip-path: polygon(
+    3% 45%,   /* linksboven */
+    100% 30%, /* rechtsboven */
+    98% 100%, /* rechtsonder */
+    2% 100%   /* linksonder */
+  );
+  z-index: -1; /* achter de tekst */
+}
+
+section nav ul {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 1rem;
+  margin: 0;
+  list-style: none;
+
+  
+}
+ /* onderste code van Chatgpt. prompt: hoe kan ik de scrolbar die links scrolt weghalen welke code hoort daarbij */
+section nav ul::-webkit-scrollbar {
+  display: none;
+}
+
+/* Kaarten */
+section nav ul li {
+  flex: 0 0 var(--card-width);
+  background: var(--color-pink);
+  border-radius: var(--radius);
+  color: var(--color-white);
+}
+
+
+/* Titel */
+section nav ul li h2 {
+  font-family: var(--font-title);
+  font-size: 36px;
+  font-weight: 200;
+  text-align:center
+}
+
+/* Afbeelding */
+section nav ul li img {
+  width: 70%;
+  object-fit: contain;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 1rem;
+}
+
+main section:nth-of-type(2) button{
+  color:var(--color-red);
+  background-color: var(--color-yellow);
+  font-family: var(--font-title);
+  font-weight: bold;
+  font-size: 24px;
+  padding: 1rem 4rem 1.5rem 1rem; /* boven, rechts, onder, links */
+  border: none;
+  cursor: pointer;
+  z-index: 4;
+}
