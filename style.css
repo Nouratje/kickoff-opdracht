@@ -15,16 +15,27 @@
   --gap: 1rem;
 }
 
+
 body {
-  background-color: var(--color-red);
+  margin: 0;
+  overflow-x: hidden;
+   background: linear-gradient(
+  to bottom,
+  #c20e1a 5%,     /* rood boven */
+  #e63721 40%,    /* oranje in het midden */
+  #c20e1a 90%    /* rood onder */
+);
 }
 
-header section {
-  display: grid;
+
+/* ====== Header basis ====== */
+/* ====== Header ====== */
+header {
+  display: flex;
   position: relative;
 }
 
-header section img:nth-of-type(1) {
+header img:nth-of-type(1) {
   width: 30%;
   position: absolute; 
   top: 1rem;          
@@ -32,45 +43,72 @@ header section img:nth-of-type(1) {
 }
 
 /* Foto van de vrouw */
-header section img:nth-of-type(2) {
-  width: 100%;          
+header img:nth-of-type(2) {
+  width: 120%;        
+  margin-left: -10%;  
   border-radius: 50%;
-  object-fit: cover; 
-  object-position: start;
+  overflow-x:hidden;
 }
 
-@media (min-width: 768px) {
-  header section img:nth-of-type(2) {
-    position: relative;
-    top: -9px;
-    right: 30%;
-    grid-column: 1 / 7; 
-    width: 80%;         
-
-  }
-}
-
-header section button {
+/* ====== Menu-knop (mobiel) ====== */
+.menu-btn {
   position: fixed;
-  top: -10px;      
-  right: 0; 
+  right: 12px; 
   background: #ffed00;
-  text-align: left;
   color: #c20e1a;
   font-family: 'Passion One', 'Bowlby One SC', sans-serif;
   font-size: 1.3rem;
-  padding: 1rem 4rem 1.5rem 1rem;
+  padding: 1rem 2rem;
   border: none;
   cursor: pointer;
-  z-index: 4;
+  z-index: 9999;
+  text-decoration: none;
+  display: inline-block;
+}
+.menu-btn:hover { background: gold; }
+
+/* ====== Overlay-menu (mobiel) ====== */
+/* ====== Mobiel (standaard) ====== */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: #ffed00;
+  color: #c20e1a;
+  display: none;   /* standaard uit */
+  z-index: 10000;
 }
 
-header section button:hover {
-  background: gold;
+.menu-overlay.open {
+  display: block;  /* openen via JS */
 }
 
+.menu-overlay .close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2rem;
+  background: transparent;
+  border: none;
+  color: #c20e1a;
+  cursor: pointer;
+}
 
+.menu-overlay ul {
+  list-style: none;
+  margin: 20vh 0 0 2rem;
+  padding: 0;
+  font-family: 'Passion One','Bowlby One SC',sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+}
 
+.menu-overlay a {
+  color: #c20e1a;
+  text-decoration: none;
+}
+.menu-overlay a:hover {
+  text-decoration: underline;
+}
 
 
 
@@ -97,7 +135,7 @@ main p:nth-of-type(1){
 }
 
 /*ontdek meer button*/
-main section:nth-of-type(1) button {
+main section:nth-of-type(1) a {
   position: relative;
   background: none;            /* achtergrond weghalen */
   border: none;
@@ -108,10 +146,12 @@ main section:nth-of-type(1) button {
   padding: 20px 40px;
   padding-top: 15%;
   cursor: pointer;
+  display: inline-block;   /* zodat de achtergrond werkt */
+  text-decoration: none; 
 }
 
 /* Het gele vlak met de schuine hoeken */
-main section:nth-of-type(1) button::before {
+main section:nth-of-type(1) a::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -125,40 +165,39 @@ main section:nth-of-type(1) button::before {
   z-index: -1; /* achter de tekst */
 }
 
-section nav ul {
+main section ul {
   display: flex;
   gap: 1rem;
   overflow-x: auto;
   padding: 1rem;
   margin: 0;
   list-style: none;
-
-  
+  margin-top:35px;
 }
- /* onderste code van Chatgpt. prompt: hoe kan ik de scrolbar die links scrolt weghalen welke code hoort daarbij */
-section nav ul::-webkit-scrollbar {
+
+/* scrollbar verbergen */
+section ul::-webkit-scrollbar {
   display: none;
 }
 
-/* Kaarten */
-section nav ul li {
+/* Kaarten in de 2e section */
+main > section:nth-of-type(2) ul li {
   flex: 0 0 var(--card-width);
   background: var(--color-pink);
-  border-radius: var(--radius);
   color: var(--color-white);
+  padding-top:20px;
 }
 
-
-/* Titel */
-section nav ul li h2 {
+/* Titel in de kaart (2e section) */
+main > section:nth-of-type(2) ul li h2 {
   font-family: var(--font-title);
   font-size: 36px;
   font-weight: 200;
-  text-align:center
+  text-align: center;
 }
 
-/* Afbeelding */
-section nav ul li img {
+/* Afbeelding in de kaart (2e section) */
+main > section:nth-of-type(2) ul li img {
   width: 70%;
   object-fit: contain;
   border-radius: 50%;
@@ -166,14 +205,827 @@ section nav ul li img {
   margin: 0 auto 1rem;
 }
 
-main section:nth-of-type(2) button{
-  color:var(--color-red);
+main > section:nth-of-type(2) p{
+  text-align: center;
+  margin-top:10%;
+}
+
+/* Button (2e section) */
+main > section:nth-of-type(2) a {
+  color: var(--color-red);
   background-color: var(--color-yellow);
   font-family: var(--font-title);
   font-weight: bold;
   font-size: 24px;
-  padding: 1rem 4rem 1.5rem 1rem; /* boven, rechts, onder, links */
+  padding: 4rem 4rem 1.5rem 1rem; /* boven, rechts, onder, links */
   border: none;
+  clip-path: polygon(
+    3% 45%,
+    100% 30%,
+    98% 100%,
+    2% 100%
+  );
   cursor: pointer;
   z-index: 4;
+  display: inline-block;
+  text-decoration: none;
 }
+
+/* === FIX rode strook — alleen voor section 2 === */
+main > section:nth-of-type(2) ul{
+  padding: 1rem 0 1rem 1rem;      /* rechts 0 */
+}
+main > section:nth-of-type(2) ul > li:last-child{
+  margin-right: 1rem;             /* eindruimte die meescrolt */
+}
+
+/* === 3e section in main === */
+main > section:nth-of-type(3) {
+  flex: 0 0 var(--card-width);
+  border-radius: var(--radius);
+  color: var(--color-white);
+}
+
+main > section:nth-of-type(3) h2{
+  padding-top:90px;
+  font-family: var(--font-title);
+  font-size: 36px;
+  color: #fff;
+}
+
+main > section:nth-of-type(3) .zigzag {
+  position: absolute;
+  left:50%;
+  margin-top:-30px;
+  width:9%;
+  pointer-events: none;
+}
+
+main > section:nth-of-type(3) .circl {
+  position: absolute;
+  left:57%;
+  margin-top:220px;
+  width: 50px;
+  pointer-events: none;
+}
+
+/* Cirkel met afbeelding – algemene stijl */
+main > section:nth-of-type(3) li img {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  border-radius: 50%;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  margin-bottom: 1rem;
+}
+
+/* Kleuren per product */
+main section:nth-of-type(3) ul li:nth-of-type(1) img { background: #f9a925; }
+main section:nth-of-type(3) ul li:nth-of-type(2) img { background: #beca2e; }
+main section:nth-of-type(3) ul li:nth-of-type(3) img { background: #7701b1; }
+main section:nth-of-type(3) ul li:nth-of-type(4) img { background: #f9a925; }
+main section:nth-of-type(3) ul li:nth-of-type(5) img { background: #ed1c25; }
+
+main section:nth-of-type(3) li p {
+  font-family: var(--font-title);
+  text-align: center;
+  font-size: 36px;
+  font-weight: 90;
+  color: #fff;
+  margin: 0;
+}
+
+/* === section 4 === */
+main > section:nth-of-type(4) {
+  position: relative;
+  text-align: center;
+  padding: 6rem 1rem;
+  color: #ffed00;
+}
+
+main > section:nth-of-type(4) h2 {
+  color: #ffed00;
+  font-family: var(--font-title);
+  font-size: 38px;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: pre-line;
+}
+
+main > section:nth-of-type(4) > p {
+  position: relative;
+  display: inline-block;
+  font-weight: 700;
+  font-family: var(--font-body);
+  font-size: 18px;
+  margin: 0;
+  padding-bottom: 4px;
+  color: #ffed00;
+}
+main > section:nth-of-type(4) > p::after {
+  content:"";
+  position:absolute; left:0; right:0; bottom:0;
+  height:3px; background: currentColor; border-radius:2px;
+}
+
+
+/* img rechts-onder */
+#orange-right {
+  position: absolute;
+  bottom: 90px;
+  right:0;
+  width: 140px;
+  height: auto;
+  pointer-events: none;
+}
+
+main > section:nth-of-type(5){
+    padding: 1rem 0 1rem 1rem;
+    color:#fff;
+}
+
+/* Lijst met kaarten */
+main > section:nth-of-type(5) ul{
+  display:flex;
+  gap:2rem;
+  list-style:none;
+  padding:0 1rem;
+  margin:0 0 2.5rem;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+}
+main > section:nth-of-type(5) ul::-webkit-scrollbar{ display:none; }
+
+/* Kaart */
+main > section:nth-of-type(5) ul li{
+  background:var(--color-pink);
+  color:var(--color-white);
+  width:400px;
+  height:400px;
+  padding:2.5rem;
+  scroll-snap-align:start;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+}
+
+/* Titel in kaart */
+main > section:nth-of-type(5) ul li h3{
+  font-family:var(--font-title);
+  font-size:36px;
+  line-height:1;
+  text-transform:uppercase;
+  margin:0;
+  margin-bottom:auto;
+}
+
+/* Pijl linksonder */
+main > section:nth-of-type(5) ul li p{
+  position:absolute;
+  left:2.5rem;
+  bottom:2.5rem;
+  margin:0;
+  font-size:26px;
+  line-height:1;
+  background:none;
+  width:auto; height:auto;
+  display:block;
+  color:#fff;
+}
+
+/* Onder-linkje */
+main > section:nth-of-type(5) > p{
+  text-align:center;
+  margin:0 0 2rem;
+}
+main > section:nth-of-type(5) > p a{
+  color:#fff;
+  font-family:var(--font-body);
+  font-size:18px;
+  text-underline-offset:4px;
+}
+
+/* === Section 6 (Socials) === */
+main > section:nth-of-type(6) {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: #fff;
+  margin-left:9%;
+}
+
+main > section:nth-of-type(6) h2 {
+  font-family: var(--font-title);
+  font-size: 35px;
+  font-weight: 700;
+  margin: 0 0 1rem;
+  margin-left:9%;
+}
+
+main > section:nth-of-type(6) p {
+  font-family: var(--font-body);
+  text-align: center;
+  font-size:18px;
+  margin: 0 0 2rem;
+}
+
+/* Iconen naast elkaar */
+main > section:nth-of-type(6) img {
+  background: var(--color-pink);
+  width: 40px;
+  height: 40px;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 0 1rem;
+}
+
+main > section:nth-of-type(7) {
+  text-align: center;
+  color: #fff;
+}
+
+main > section:nth-of-type(7) h2 {
+  font-family: var(--font-title);
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0 0 2rem;
+}
+
+main > section:nth-of-type(7) ul {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  padding: 1rem;
+  margin: 0;
+  list-style: none;
+}
+
+main > section:nth-of-type(7) ul::-webkit-scrollbar {
+  display: none;
+}
+
+main > section:nth-of-type(7) ul li {
+  background: #f87a30; /* oranje achtergrond */
+  color: #fff;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+main > section:nth-of-type(7) ul li img {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #ffe000;
+  display: block;
+  margin: 0 auto 1.5rem;
+}
+
+main > section:nth-of-type(7) ul li h3 {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  margin: 0 0 1.5rem;
+}
+
+main > section:nth-of-type(7) ul li a{
+  display: inline-block;
+  text-decoration: none;
+  color: var(--color-red);
+  background-color: var(--color-yellow);
+  font-family: var(--font-title);
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  border: none;
+  clip-path: polygon(
+    3% 45%, 
+    100% 30%, 
+    98% 100%, 
+    2% 100%
+  );
+  cursor: pointer;
+}
+
+/* ===== Footer ===== */
+footer {
+  margin-top: -120px;
+  padding: 7rem 1rem;
+  background: #ea0748;
+  max-width: 350px;   /* breedte beperken */
+  margin-left: auto;
+  margin-right: auto; /* centreert het blok */
+}
+
+/* elk blok in de footer = roze kaart met afgeronde hoeken */
+footer > section {
+  max-width: 400px;
+  height: auto;
+  margin: 0 auto 2rem;              /* ruimte tussen blokken */
+  background: var(--color-pink);
+  padding: 2rem;
+  border-radius: 12px;              /* optioneel mooier */
+}
+
+footer > section:last-of-type {
+  margin-bottom: 0;                 /* geen marge onder laatste blok */
+  padding-bottom: 0;                /* geen padding onder laatste blok */
+}
+
+/* titels in de footer */
+footer h2 {
+  margin: 2rem 0 1rem;
+  font-family: var(--font-title);
+  font-size: 2rem;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+/* ===== Lijsten met pijlen (alleen 1e section) ===== */
+footer > section:first-of-type ul li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: .5rem;
+}
+
+footer > section:first-of-type ul li::before {
+  content: "➜";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ffed00;   /* geel cirkeltje */
+  color: #c20e1a;        /* rode pijl */
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1;
+  border-radius: 50%;
+  width: 1.2em;
+  height: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* lijst algemene stijl */
+footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+footer li {
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+}
+
+/* ===== Social icons (2e section) ===== */
+footer > section:nth-of-type(2) {
+  text-align: center;
+}
+
+footer > section:nth-of-type(2) img {
+  position: relative;
+  top: -70px;
+  max-width: 30px;
+  right: 130px;
+}
+
+/* ===== Juridische links (3e section) ===== */
+footer > section:nth-of-type(3) ul {
+   align-items: flex-start;
+  text-align: left;}
+
+footer > section:nth-of-type(3) ul li {
+  padding-left: 0;
+  position: static;
+}
+
+footer > section:nth-of-type(3) ul li::before {
+  content: none;           /* geen pijl of bolletje */
+}
+
+/* ===== PRODUCTPAGINA ===== */
+
+/* ====== PRODUCTPAGINA (mobile-first) ====== */
+body#product {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: 'Raleway', system-ui, sans-serif;
+  background: #e91e63;                /* roze basis */
+  color: #111;
+}
+
+/* Header: logo + bestaande menu-knop werkt door */
+body#product header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  position: relative;
+}
+body#product header img[alt="logo"] {
+  width: 90px;
+  height: auto;
+}
+
+/* ====== Main lay-out ====== */
+body#product main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+  display: grid;
+  gap: 24px;
+}
+
+/* Sectie 1: productvisual */
+body#product main section:first-of-type {
+  position: relative;
+  display: grid;
+  place-items: start center;
+}
+
+/* decoratief licht vlak achter de lolly (zonder extra divs) */
+body#product main section:first-of-type::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: min(360px, 85vw);
+  height: 220px;
+  background: #ffa3c0;                 /* lichtere roze tegel */
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.18);
+}
+
+/* de productafbeelding */
+body#product main section:first-of-type img {
+  position: relative;
+  top:50px;
+  z-index: 1;
+  width: 350px;
+  height: 360px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Sectie 2: witte kaart met content */
+body#product main section:nth-of-type(2) {
+    background: #fff;
+  box-shadow: 0 12px 30px rgba(0,0,0,.2);
+  padding: 77px 40px 75px;
+}
+
+body#product h1 {
+  color:rgb(0, 0, 0);
+  margin: 0 0 12px 0;
+  font-family: 'Passion One', 'Bowlby One SC', sans-serif;
+  font-size: 48px;
+  letter-spacing: .5px;
+  line-height: 1.05;
+}
+
+body#product p {
+  font-family: var(--font-body);
+  font-size: 16px;
+  margin: 12px 0 6px 0;   /* boven 12px, onder 6px */
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Als het een paragraaf is die de laatste in een blok is → geen extra marge */
+body#product p:last-of-type {
+  margin-bottom: 0;
+}
+
+body#product main section:nth-of-type(2) > a {
+  position: relative;
+  margin-left: 70px;
+}
+
+body#product main section:nth-of-type(2) > button {
+  display: flex;
+  margin-top: 55px;
+  margin-left:66px;
+  background: none;
+  border: none;
+  color: #111;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1rem;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+}
+body#product main section:nth-of-type(2) > button:hover {
+  color: #c20e1a; /* rood hoverkleur */
+}
+
+
+/* ====== Productpagina: 3e section = allergenen/claims ====== */
+/* Productpagina: sectie 3 (Allergenen & claims) – overrides */
+body#product main > section:nth-of-type(3) {
+  position:relative;
+  margin-top:-24px;
+  padding-block: 2px 24px;
+  padding-inline: 16px;
+  border-radius: 0;         
+  background: #9e1136;
+  color: #fff;
+  box-shadow: inset 0 8px 18px rgba(0,0,0,.15);
+}
+
+/* titel: geen extra bovenmarge zodat er geen gat ontstaat */
+body#product main > section:nth-of-type(3) h2 {
+  margin: 0 0 12px;
+  font: 700 1.05rem 
+  var(--font-body)
+}
+
+/* lijst met checkmarks – zoals eerder */
+body#product main > section:nth-of-type(3) ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 18px;
+}
+body#product main > section:nth-of-type(3) li {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  align-items: center;
+  column-gap: 12px;
+  line-height: 1.5;
+  font-size: 1.05rem;
+}
+body#product main > section:nth-of-type(3) li::before {
+  content: "✓";
+  display: inline-grid;
+  place-items: center;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 700;
+}
+
+
+
+
+
+
+
+
+
+/* Tip: zet @media helemaal onderaan aan het einde van de code.*/
+/* ===== Responsiveness ===== */
+/* ====== Desktop (≥ 900px) ====== */
+@media (min-width: 900px) {
+  body#product header { padding: 20px 32px; }
+  body#product header img[alt="logo"] { width: 110px; }
+
+  body#product main {
+    grid-template-columns: 1fr 480px; /* visual links, kaart rechts */
+    align-items: center;
+    gap: 36px;
+    padding: 40px 32px 96px;
+  }
+
+  /* vergroot decor-tegel en visual */
+  body#product main section:first-of-type::before {
+    width: 460px;
+    height: 260px;
+    left: 45%;
+  }
+  body#product main section:first-of-type img {
+    width: 460px;
+  }
+
+  /* kaart iets “zwevend” */
+  body#product main section:nth-of-type(2) {
+    padding: 28px 28px 32px;
+  }
+}
+
+/* ===== Laptop / desktop (≥1024px) ===== */
+@media (min-width: 1024px){
+  header{
+    position: relative;
+    min-height: 85vh;           /* ruimte voor de grote cirkel */
+    overflow: hidden;           /* randen netjes afsnijden */
+  }
+
+  /* Logo gecentreerd boven */
+  header img:nth-of-type(1){
+    position: absolute;
+    top: 1.2rem;
+    left: 60%;
+    transform: translateX(-50%);
+    width: clamp(120px, 10vw, 160px);
+    z-index: 3;                 /* boven de foto */
+  }
+
+  /* Grote ronde foto links */
+  header img:nth-of-type(2){
+    position: absolute;
+    top: -12vh;                 /* schuif iets omhoog */
+    left: -14vw;                /* duw naar links buiten beeld */
+    height: 115vh;              /* schaal op hoogte = stabielere cirkel */
+    width: auto;
+    object-fit: cover;
+    border-radius: 50%;           /* overriden van mobile */
+    margin-left: 0;
+
+    /* mooie, grote cirkel met offset (ipv ovaal) */
+    clip-path: circle(52vh at 30vw 48vh);
+    z-index: 1;
+  }
+
+  /* Menu knop rechtsboven */
+  .menu-btn{
+    position: absolute;         /* niet meer fixed */
+    top: 1.2rem;
+    right: 1.2rem;
+    padding: 0.9rem 1.6rem;
+    font-size: 1.1rem;
+    z-index: 4;
+  }
+}
+
+/* ===== Extra groot (≥1440px) – subtiele finetune ===== */
+/* ===== Footer desktop fix (≥1024px) — 3 kolommen met grid-areas ===== */
+/* ====== Desktop (≥900px) ====== */
+@media (min-width: 900px) {
+  /* Mobiele overlay uitschakelen */
+  .menu-btn { display: none; }         /* geen knop */
+  .menu-overlay { 
+    all: unset;                        /* reset alle overlay styles */
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    width: 320px;
+    background: #ffed00;
+    color: #c20e1a;
+    font-family: 'Passion One','Bowlby One SC',sans-serif;
+    box-shadow: 0 6px 20px rgba(0,0,0,.2);
+    padding-bottom: 1rem;
+    display: block !important;         /* altijd zichtbaar */
+  }
+
+  .menu-overlay .close { display: none; } /* kruisje weg */
+
+  .menu-overlay ul {
+    list-style: none;
+    margin: 0;
+    padding: 1rem;
+    display: grid;
+    gap: 10px;
+    font-size: 1.5rem;
+  }
+
+  .menu-overlay ul li:last-child {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 2px solid rgba(0,0,0,.2);
+  }
+}
+
+@media (min-width:1024px){
+  footer{
+    margin-top: 0;
+    /*width: 1200px;*/
+    max-width: none;
+    padding: 7rem 0 3rem;   /* volle breedte achtergrond */
+  }
+
+  /* Kaart-stijl uit op desktop */
+  footer > section{
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    max-width: none;
+  }
+
+  /* grid temlate gezet dmv chatgpt. prompt was: hoe kan ik mijn huidige footer zoals de footer van 
+  die laten zien(heb de chupa chups footer laten zien) na paar problemen is het wel gelukt door de
+  grid template */
+  footer > section:first-of-type{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    grid-template-areas:
+      "t1 t2 t3"
+      "l1 l2 l3";
+    gap: 1.25rem 5rem;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+    align-items: start;
+  }
+
+  /* Titels positioneren */
+  footer > section:first-of-type h2:nth-of-type(1){ grid-area: t1; }
+  footer > section:first-of-type h2:nth-of-type(2){ grid-area: t2; }
+  footer > section:first-of-type h2:nth-of-type(3){ grid-area: t3; }
+
+  /* Lijsten positioneren */
+  footer > section:first-of-type ul:nth-of-type(1){ grid-area: l1; }
+  footer > section:first-of-type ul:nth-of-type(2){ grid-area: l2; }
+  footer > section:first-of-type ul:nth-of-type(3){ grid-area: l3; }
+
+  /* Typo & spacing */
+  footer h2{
+    margin: 0 0 1rem;
+    font-size: clamp(2rem, 3vw, 3rem);
+  }
+  footer > section:first-of-type ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+  }
+
+  /* Gele ronde bullets met pijl (voor alle 3 kolommen) */
+  footer > section:first-of-type ul li{
+    position: relative;
+    padding-left: 2rem;
+    font-size: 1.125rem;
+  }
+  footer > section:first-of-type ul li::before{
+    content: "➜";
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 1.2em; height: 1.2em;
+    display: grid; place-items: center;
+    border-radius: 50%;
+    background: #ffed00;
+    color: #c20e1a;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  /* Socials-rij */
+  footer > section:nth-of-type(2){
+    max-width: 1200px; margin: 0 auto 4rem;
+    display: flex; gap: 1rem; align-items: center;
+  }
+  footer > section:nth-of-type(2) img{
+    position: static;
+    width: 40px; height: 40px;
+    padding: 20px; border-radius: 8px;
+    background: var(--color-pink);
+  }
+
+  /* Juridische links op één regel onderaan */
+  footer > section:nth-of-type(3) ul{
+    max-width: 1200px; margin: 0 auto;
+    display: flex; flex-wrap: wrap;
+    gap: 1rem 2.5rem; justify-content: space-between;
+    text-align: left;
+  }
+  footer > section:nth-of-type(3) ul li{
+    white-space: nowrap; font-size: 1rem;
+  }
+}
+
+/* Extra groot scherm finetune */
+@media (min-width:1440px){
+  footer > section:first-of-type{ max-width: 1280px; gap: 1.5rem 6rem; }
+  footer > section:nth-of-type(3) ul{ max-width: 1280px; }
+}
+
+
+/************************************color schema***********************************************/
+/* Dark mode (volgt automatisch het systeem) */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #3f0000;
+    color: #ffffff;
+  }
+
+  /* Voor productpagina */
+  body#product {
+    background: #3f0000;
+    color: #ffffff;
+  }
+
+  /* Eventuele kaarten/containers */
+  section {
+    background: #3f0000;
+    color: #ffffff;
+  }
+
+  header {
+    background: #3f0000;
+    color: #ffffff;
+  }
+
+  /* Links in dark mode */
+  a {
+    color: #ffe031;
+  }
+}
+/**********************8test*/
+
