@@ -211,31 +211,6 @@ Dat gaf wat stress, zeker omdat ik ook een week ziek was geweest en daardoor ach
 </details>
 
 
-
-
-
-## Voortgang 3 (week 4)
-
-<details>
-  <summary>uitwerken voor 3<sup>e</sup> voortgang</summary>
-
-  ### Stand van zaken
-  hier dit ging goed & dit was lastig (neem ook screenshots op van delen van je website en code)
-
-
-  ### Agenda voor meeting
-  samen met je groepje opstellen
-
-  | student 1      | student 2          | student 3    | student 4        |
-  | ---            | ---                | ---          | ---              |
-  | dit bespreken  | en dit             | en ik dit    | en dan ik dat    |
-  | en dat ook nog | dit als er tijd is | nog een punt | dit wil ik zeker |
-  | ...            | ...                | ...          | ...              |
-
-
-  ### Verslag van meeting
-  hier na afloop snel de uitkomsten van de meeting vastleggen
-
   ## Voortgang 3 (week 4)
 
 <details>
