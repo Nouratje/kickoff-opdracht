@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="light dark">
   <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Passion+One:wght@400;700;900&family=Raleway:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <script src="java.js" defer></script>
@@ -12,7 +11,9 @@
 <body id="product">
 
 <header>
-  <img src="afbeeldingen/logo.svg" alt="logo">
+  <a href="index.html" class="logo-link">
+    <img src="afbeeldingen/logo.svg" alt="logo">
+  </a>
   <a href="#menu" class="menu-btn">Menu</a>
   <nav id="menu" class="menu-overlay" aria-label="Hoofdmenu">
     <button type="button" class="close" aria-label="Sluit menu">×</button>
@@ -23,17 +24,21 @@
       <li><a href="#">FAQ</a></li>
     </ul>
   </nav>
+  <!--bron:https://chatgpt.com/share/68db5d07-885c-8004-ac7e-538fba998ca8--> 
+  <p class="breadcrumbs">
+  Home &rsaquo; Producten &rsaquo; Bubblegum aardbei
+</p>
 </header>
 
 <main>
-  <!-- Section 1 in main = grote productvisual links -->
-  <section>
+  <!--  -->
+  <section class="bubblegum">
     <img src="afbeeldingen/bubblegum-aardbei" alt="Bubblegum XXL Aardbei visual">
   </section>
 
-  <!-- Section 2 in main = witte productkaart rechts -->
-  <section>
-    <h1>BUBBLEGUM<br>XXL AARDBEI</h1>
+  <!-- productkaart -->
+  <section class="product-info">
+    <h1>BUBBLEGUM XXL AARDBEI</h1>
     <p>Chupa Chups lolly in XXL formaat met kern van kauwgom. 
     Grote lolly voor extra veel snoepplezier. Lolly met kern van kauwgum voor een verrassende variatie.</p>
     <p>De voedingsinformatie op de website kan afwijken van de informatie op de verpakking. Kijk altijd naar de verpakking voor de juiste informatie over allergenen en ingrediënten.</p>
@@ -41,35 +46,37 @@
     <button>Meer product info</button>
   </section>
 
-
-  <section>
-  <h2>Allergenen & claims</h2>
-  <ul>
-    <li>Glutenvrij</li>
-    <li>Kan sporen van melk bevatten</li>
-    <li>Bevat soja</li>
-  </ul>
+  <!-- allergenen/claims -->
+  <section class="allergenen">
+    <h2>Allergenen & claims</h2>
+    <ul>
+      <li>Glutenvrij</li>
+      <li>Kan sporen van melk bevatten</li>
+      <li>Bevat soja</li>
+    </ul>
   </section>
 
+  <!-- voedings-info rij-->
+   <!--bron:https://www.w3schools.com/tags/att_data-.asp -->
+  <section class="nutri">
+    <h2 id="voeding-titel" class="visually-hidden">Voedingsinformatie</h2>
+    <ul class="nutri-metrics">
+      <li data-voedingswaarde="Energie"><strong data-unit="kJ">1524</strong></li>
+      <li data-voedingswaarde="Energie" data-sub="(kcal)"><strong data-unit="kcal">359</strong></li>
+      <li data-voedingswaarde="Vet"><strong data-unit="g">0</strong></li>
+      <li data-voedingswaarde="Verzadigde vetten"><strong data-unit="g">0</strong></li>
+      <li data-voedingswaarde="Koolhydraten"><strong data-unit="g">89</strong></li>
+    </ul>
+    <p>Per 100 grams</p>
+  </section>
 
-  <!-- Section: voedingsinfo -->
-<section aria-labelledby="voeding-titel">
-  <!-- Top met 3 cijfers -->
-  <h2 id="voeding-titel" class="visually-hidden">Voedingsinformatie</h2>
-  <ul class="nutri-metrics">
-    <li><strong>1524<small>kJ</small></strong><span>Energie</span></li>
-    <li><strong>359<small>kcal</small></strong><span>Energie (kcal)</span></li>
-    <li><strong>0<small>g</small></strong><span>Vet</span></li>
-  </ul>
-
-  <p class="per">Per 100 grams</p>
-
-  <!-- Card 1 -->
-  <details class="card" open>
-    <summary>VOEDINGSWAARDEN</summary>
-    <p class="sub">Voedingswaarden per 100 grams</p>
-    <table>
-      <tbody>
+  <!-- voedingswaarden -->
+  <!--summary bron: https://chatgpt.com/share/68dac8ed-4b34-8004-8bf9-b2882679812dhttps://www.w3schools.com/tags/tag_summary.asp -->
+  <section id="nutrition">
+    <details class="card" open>
+      <summary>VOEDINGSWAARDEN</summary>
+      <p class="sub">Voedingswaarden per 100 grams</p>
+      <table>
         <tr><th>Energie</th><td>1524 kJ</td></tr>
         <tr><th>Energie (kcal)</th><td>359 kcal</td></tr>
         <tr><th>Vet</th><td>0 g</td></tr>
@@ -78,17 +85,59 @@
         <tr><th>Waarvan suikers</th><td>72 g</td></tr>
         <tr><th>Eiwitten</th><td>0 g</td></tr>
         <tr><th>Zout</th><td>0 g</td></tr>
-      </tbody>
-    </table>
-  </details>
+      </table>
+    </details>
 
-  <!-- Card 2 -->
-  <details class="card">
-    <summary>INGREDIËNTEN</summary>
-    <p>Suiker, glucosestroop, aroma’s, kleurstoffen: E162, E160a.</p>
-  </details>
-</section>
+    <details class="card">
+      <summary>INGREDIËNTEN</summary>
+      <p>Suiker, glucosestroop, aroma’s, kleurstoffen: E162, E160a. Suiker, glucosestroop, gombasis,
+        voedingszuur(citroenzuur), kleurstof (bietenrood), aroma's, 
+        Kan sporen van MELK bevatten.</p>
+    </details>
+  </section>
 
+  <!-- koop nu -->
+  <section class="koop">
+    <h2>Koop nu</h2>
+
+    <nav aria-label="Winkels">
+      <ul>
+        <li><a href="#"><img src="afbeeldingen/ah.png" alt="Albert Heijn"></a></li>
+        <li><a href="#"><img src="afbeeldingen/jumbo.png" alt="Jumbo"></a></li>
+        <li><a href="#"><img src="afbeeldingen/delhaize.png" alt="Delhaize"></a></li>
+        <li><a href="#"><img src="afbeeldingen/coop.png" alt="Coop"></a></li>
+      </ul>
+    </nav>
+
+    <h3>Productinformatie</h3>
+    <ul>
+      <li>Glutenvrij</li>
+      <li>Kan sporen van melk bevatten</li>
+      <li>Bevat soja</li>
+    </ul>
+  </section>
+
+  <!-- probeer ook -->
+  <section class="aanbevolen">
+    <h2>PROBEER OOK EENS</h2>
+    <ul>
+      <li>
+        <img src="afbeeldingen/bubblegum-aardbei" alt="Bubblegum XXL Aardbei">
+        <h3>BUBBLEGUM XXL<br>AARDBEI</h3>
+        <a href="product.html">TOON PRODUCT</a>
+      </li>
+      <li>
+        <img src="afbeeldingen/best-of-wheel" alt="">
+        <h3>The Best Of Wheel 200st</h3>
+        <a href="#">TOON PRODUCT</a>
+      </li>
+      <li>
+        <img src="afbeeldingen/melody-pops" alt="">
+        <h3>Melody Pops</h3>
+        <a href="#">TOON PRODUCT</a>
+      </li>
+    </ul>
+  </section>
 </main>
 
 <footer>
