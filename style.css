@@ -14,8 +14,6 @@
   --card-width: 17.5em;
   --gap: 1rem;
 
-
-  /*darkmode*/
   
 }
 
@@ -413,7 +411,7 @@ main > section:nth-of-type(5) ul li button strong{
   font-weight:700;
 }
 
-/* Pijl linksonder */
+
 main > section:nth-of-type(5) ul li button i{
   position:absolute;
   left:2.5rem;
@@ -426,10 +424,10 @@ main > section:nth-of-type(5) ul li button i{
   height:auto;
   display:block;
   color:#fff;
-  font-style: normal; /* pijltje blijft rechtop */
+  font-style: normal;
 }
 
-/* Onder-linkje */
+
 main > section:nth-of-type(5) > p{
   text-align:center;
   margin:0 0 2rem;
@@ -650,12 +648,6 @@ footer > section:nth-of-type(3) ul li::before {
 
 /* ===== PRODUCTPAGINA ===== */
 
-/* =========================
-   #product: Header + Main
-   (overflow-safe, mobile-first)
-   ========================= */
-
-/* Header */
 body#product header{
   display:flex;
   align-items:center;
@@ -682,15 +674,15 @@ body#product .bubblegum{
   place-items: start center;
   width:17em;
   height:18em;
-  overflow: hidden;              /* FIX: clip pseudo-bg binnen de sectie */
+  overflow: hidden;
 }
 body#product .bubblegum::before{
   content:"";
   position: absolute;
-  left: 50%;                     /* FIX: centreren (ipv 58%) */
+  left: 50%;  
   top: 120%;
   transform: translate(-50%, -50%);
-  width: min(19.5em, 100%);      /* FIX: nooit breder dan container */
+  width: min(19.5em, 100%);
   height: 16em;
   background:
     linear-gradient(135deg, #f06292 25%, transparent 25%) -5px 0,
@@ -723,7 +715,7 @@ body#product .bubblegum img{
   display:block;
 }
 
-/* === Section 2: product-info (overflow-safe) === */
+/* === Section 2: product-info === */
 body#product .product-info{
   position: relative;
   left: 0.3em;
@@ -742,13 +734,13 @@ body#product .product-info h1{
   margin:0 0 0.5em 0;
   text-transform:uppercase;
 }
-/* Staartje: visueel buiten kaart, telt niet mee voor scrollbreedte */
+
 body#product .product-info::after{
   content:"";
   position:absolute;
-  right:0;                       /* FIX: aan rand van kaart */
+  right:0;                    
   top:40%;
-  transform: translate(100%, -50%); /* FIX: buiten kaart schilderen */
+  transform: translate(100%, -50%); 
   width:10px;
   height:40px;
   background:#ffffff;
@@ -785,7 +777,7 @@ body#product .product-info > button:hover{ color:#c20e1a; }
 /* === Section 3: allergenen === */
 body#product .allergenen{
   position:relative;
-  width: min(16.6em, 100%);      /* FIX: clamp */
+  width: min(16.6em, 100%);  
   left:0.5em;
   padding-block:0.125em 1.5em;
   padding-inline:1em;
@@ -828,7 +820,7 @@ body#product .nutri{
   margin:0;
   bottom:2em;
   left:0.2em;
-  width: min(19.4em, 100%);      /* FIX: clamp */
+  width: min(19.4em, 100%); 
   overflow:hidden;
 }
 body#product .nutri-metrics{
@@ -836,7 +828,7 @@ body#product .nutri-metrics{
   overflow-x:auto;
   gap:2rem;
   list-style:none;
-  width:100%;                    /* FIX: was 17em */
+  width:100%;               
   background:#fff;
   padding-top:2em;
   margin:0;
@@ -876,7 +868,7 @@ body#product .nutri p{
 /* === Section 5: nutrition tabel === */
 #nutrition{
   position:relative;
-  margin-right:2em;              /* let op: bij zeer smal scherm gereset hieronder */
+  margin-right:2em;         
   margin-bottom:5em;
 }
 #nutrition .card{
@@ -1010,7 +1002,7 @@ body#product .koop > ul li::before{
   margin:0; padding:0;
   text-align:start;
   color:#fff;
-  width: min(20em, 100%);        /* FIX: clamp */
+  width: min(20em, 100%);      
 }
 #product .aanbevolen h2{
   font-family:var(--font-title);
@@ -1059,27 +1051,8 @@ body#product .koop > ul li::before{
 }
 
 
-
-
-/* ===== Responsiveness ===== */
-/* ====== ====== */
-
-/* =========================
-   BASE (mobiel, default)
-   ========================= */
-/* Zet hier je algemene, device-onafhankelijke styles */
-
-/* =========================
-   DARK MODE
-   ========================= */
-@media (prefers-color-scheme: dark) {
-  body, body#product, section, header { background:#3f0000; color:#fff; }
-  a { color:#ffe031; }
-}
-
-/* =========================
-   TABLET (768–1024)
-   ========================= */
+/* =========================Responsiveness=============================== */
+/* =========================TABLET (768–1024)========================= */
 @media (min-width: 768px) and (max-width: 1024px) {
 
    header {
@@ -1555,78 +1528,89 @@ footer > section:first-of-type h2:nth-of-type(2) + ul{
 }
 
 /* =========================
-   DESKTOP (≥1024)
-   ========================= */
+   Laptop (min-width: 1024px)
+========================= */
 @media (min-width: 1024px) {
 
-  /* Header desktop layout */
-  header{ 
-    position: relative; 
-    min-height: 85vh;
-  }
+header{ 
+  position: relative; 
+  min-height: 85vh;
+}
 
-  header img:nth-of-type(1){
-    position: absolute; 
-    top: 1.2rem; 
-    left: 60%;
-    transform: translateX(-50%);
-    width: clamp(120px, 10vw, 160px);
-    z-index: 3;
-  }
+header img:nth-of-type(1){
+  position: absolute; 
+  top: 1.2rem; 
+  left: 60%;
+  transform: translateX(-50%);
+  width: clamp(120px, 10vw, 160px);
+  z-index: 3;
+}
 
-  header img:nth-of-type(2){
-    position: absolute; 
-    top: -10vh; 
-    left: -3vw;
-    height: 110vh; 
-    width:auto; 
-    border-radius: 50%;
-    z-index:1;
-  }
-  header img:nth-of-type(3),
-  header img:nth-of-type(4),
-  header img:nth-of-type(5){
-    display:block; 
-    position:absolute;
-    z-index:4;
-    pointer-events:none;
-  }
+header img:nth-of-type(2){
+  position: absolute; 
+  top: -10vh; 
+  left: -3vw;
+  height: 110vh; 
+  width:auto; 
+  border-radius: 50%;
+  z-index:1;
+}
 
-  header img:nth-of-type(3){
-    top:8rem; 
-    right:2rem;
-  }
-  header img:nth-of-type(4){ 
-    top:35rem; 
-    left:80rem; 
-  }
+header img:nth-of-type(3),
+header img:nth-of-type(4),
+header img:nth-of-type(5){
+  display:block; 
+  position:absolute;
+  z-index:4;
+  pointer-events:none;
+}
 
-  header img:nth-of-type(5){ 
-    top:22rem; 
-    left:31rem; 
-    width:6em;
-  }
+header img:nth-of-type(3){
+  top:8rem; 
+  right:2rem;
+}
+header img:nth-of-type(4){ 
+  top:35rem; 
+  left:80rem; 
+}
+
+header img:nth-of-type(5){ 
+  top:22rem; 
+  left:31rem; 
+  width:6em;
+}
 
   
-  .menu-btn{ display: none; }
-  .menu-overlay{
-    all: unset;
-    position: absolute;
-    top: 40px; right: 40px; width: 320px;
-    background: #ffed00; color:#c20e1a;
-    font-family: 'Passion One','Bowlby One SC',sans-serif;
-    box-shadow: 0 6px 20px rgba(0,0,0,.2);
-    padding-bottom: 1rem;
-    display: block !important;
-  }
-  .menu-overlay .close{ display:none; }
-  .menu-overlay ul{
-    list-style:none; margin:0; padding:1rem;
-    display:grid; gap:10px; font-size:1.5rem;
-  }
-  .menu-overlay ul li:last-child{
-    margin-top:10px; padding-top:10px; border-top:2px solid rgba(0,0,0,.2);
-  }
+.menu-btn{ 
+  display: none; 
+}
+
+.menu-overlay{
+  all: unset;
+  position: absolute;
+  top: 40px; right: 40px; width: 320px;
+  background: #ffed00; color:#c20e1a;
+  font-family: 'Passion One','Bowlby One SC',sans-serif;
+  box-shadow: 0 6px 20px rgba(0,0,0,.2);
+  padding-bottom: 1rem;
+  display: block !important;
+}
+
+.menu-overlay .close{ 
+  display:none; 
+}
+
+.menu-overlay ul{
+  list-style:none; margin:0; padding:1rem;
+  display:grid; gap:10px; font-size:1.5rem;
+}
+
+.menu-overlay ul li:last-child{
+  margin-top:10px; 
+  padding-top:10px; 
+  border-top:2px 
+  solid rgba(0,0,0,.2);
+}
 
 main section:nth-of-type(1) h1{
   position: relative;
@@ -1657,8 +1641,8 @@ main section:nth-of-type(1) a{
   margin-left: 20em;
   width: 12%;
   margin-top: 4em;
-  background-color: #ffeb00; /* geel */
-  color: #c8102e; /* rood voor tekst */
+  background-color: #ffeb00;
+  color: #c8102e;
   display: block;
   text-align: center;
   padding-top: 2rem;
@@ -1674,61 +1658,60 @@ main section:nth-of-type(1) a{
 }
 
 
-  main > section:nth-of-type(2){ 
-    position:relative;
-    bottom:5em;
-    color:#fff; 
-    padding:28px 0 40px; 
-  }
+main > section:nth-of-type(2){ 
+  position:relative;
+  bottom:5em;
+  color:#fff; 
+  padding:28px 0 40px; 
+}
   
-  main > section:nth-of-type(2) h3{ 
-    position:relative; 
-    right:2em; 
-    bottom:2em; 
-  }
+main > section:nth-of-type(2) h3{ 
+  position:relative; 
+  right:2em; 
+  bottom:2em; 
+}
   
-  main > section:nth-of-type(2) p{ 
-    position:relative; 
-    left:15em; 
-    bottom:11em; 
-  }
-  main > section:nth-of-type(2) a{ 
-    position:relative;
-    bottom:5em; 
-    width:200px;  
-  }
+main > section:nth-of-type(2) p{ 
+  position:relative; 
+  left:15em; 
+  bottom:11em; 
+}
+main > section:nth-of-type(2) a{ 
+  position:relative;
+  bottom:5em; 
+  width:200px;  
+}
   
-  main > section:nth-of-type(2) > ul{
-    list-style:none;
-    margin:0; 
-    padding:0 24px;
-    display:flex; 
-    gap:24px; 
-    overflow-x:auto; 
-    overscroll-behavior-x:contain;
-    scroll-snap-type:x mandatory; 
-    scroll-padding:24px; 
-    -webkit-overflow-scrolling:touch;
-  }
+main > section:nth-of-type(2) > ul{
+  list-style:none;
+  margin:0; 
+  padding:0 24px;
+  display:flex; 
+  gap:24px; 
+  overflow-x:auto; 
+  overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory; 
+  scroll-padding:24px; 
+  -webkit-overflow-scrolling:touch;
+}
 
-  main > section:nth-of-type(2) > ul::-webkit-scrollbar{
-     display:none; 
-    }
+main > section:nth-of-type(2) > ul::-webkit-scrollbar{
+ display:none; 
+}
 
-  main > section:nth-of-type(2) > ul > li{
-    position:relative; 
-    min-width:min(680px);
-    border-radius:24px; 
-    padding:0;
-    scroll-snap-align:start; 
-    display:grid; 
-    align-items:center;
-    gap:28px;
-    grid-template-columns:1.1fr 1fr;
+main > section:nth-of-type(2) > ul > li{
+  position:relative; 
+  min-width:min(680px);
+  border-radius:24px; 
+  padding:0;
+  scroll-snap-align:start; 
+  display:grid; 
+  align-items:center;
+  gap:28px;
+  grid-template-columns:1.1fr 1fr;
   
-  }
+}
 
-  /* --- swipebare rij --- */
 
 main > section:nth-of-type(3){
   position:relative;
@@ -1757,17 +1740,16 @@ main > section:nth-of-type(3) ul::-webkit-scrollbar{
 
 main > section:nth-of-type(3) ul li{
   flex: 0 0 auto;
-  scroll-snap-align: center;      /* midden van het scherm */
-  scroll-snap-stop: always;       /* stop op elk item tijdens snel scrollen */
+  scroll-snap-align: center;
+  scroll-snap-stop: always; 
   transition: transform 0.01s ease;
 }
 main > section:nth-of-type(3) ul li:hover {
    transform: scale(1.08);
 }
 
-/* --- GROTERE cirkels/kaarten --- */
+
 main > section:nth-of-type(3) ul li a img{
-  /* maak groter, schaalt netjes mee */
   width: 260px;
   height: 260px;
   border-radius: 50%;
@@ -1776,7 +1758,7 @@ main > section:nth-of-type(3) ul li a img{
   margin-bottom: 1rem;
 }
 
-/* (optioneel) tekst iets groter onder de cirkel */
+
 main > section:nth-of-type(3) ul li a p{
   font-size:3em;
   margin-top: .25rem;
@@ -1849,8 +1831,8 @@ main > section:nth-of-type(6) img{
 }
 
 main > section:nth-of-type(7) {
-  position: relative;   /* referentie voor absolute children */
-  z-index: 10;          /* indien nodig boven naburige secties */
+  position: relative;
+  z-index: 10;       
 }
 main > section:nth-of-type(7) h2{
   position:relative;
@@ -1879,130 +1861,131 @@ main > section:nth-of-type(7) ul li:hover {
 }
 
 .decor-shapes {
-    display: block;
-    position: absolute;
-    inset: 0;     
-    z-index: 3;          
-    pointer-events: none;
-  }
+  display: block;
+  position: absolute;
+  inset: 0;     
+  z-index: 3;          
+  pointer-events: none;
+}
 
-  .decor-shapes ul {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
+.decor-shapes ul {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-  .decor-shapes li {
-    position: absolute;
-  }
+.decor-shapes li {
+  position: absolute;
+}
 
-  .decor-shapes img {
-    display: block;
-    width: 80px;
-    height: auto;
-  }
+.decor-shapes img {
+  display: block;
+  width: 80px;
+  height: auto;
+}
 
-  /* posities nu relatief aan section 7 (geen vh/vw maar %) */
-  .decor-shapes li:nth-of-type(1) {
-    top: 84%;
-    left: 3%;
-    transform: rotate(-12deg);
-  }
+  
+.decor-shapes li:nth-of-type(1) {
+  top: 84%;
+  left: 3%;
+  transform: rotate(-12deg);
+}
 
-  .decor-shapes li:nth-of-type(2) {
-    top: 98%;
-    left: 50%;
-  }
+.decor-shapes li:nth-of-type(2) {
+  top: 98%;
+  left: 50%;
+}
 
-  .decor-shapes li:nth-of-type(3) {
-    top: 90%;
-    left: 92%;
-  }
+.decor-shapes li:nth-of-type(3) {
+  top: 90%;
+  left: 92%;
+}
 
-  /* Product grid / main */
+  /* Product  / main */
   /* Breadcrumbs product */
-  body#product header p.breadcrumbs{
-    display:block; position:relative; right:65em; margin-top:1em;
-    font-size:0.9rem; color:#444;
-  }
+body#product header p.breadcrumbs{
+  display:block; position:relative; right:65em; margin-top:1em;
+  font-size:0.9rem; color:#444;
+}
 
-  body#product .bubblegum{
-    position:relative; bottom:20em; justify-self:end;
-    margin:0; width:30em; height:26em;
-  }
-  body#product .bubblegum img{ width:22em; top:0; }
-  body#product .product-info{
+body#product .bubblegum{
+  position:relative; bottom:20em; justify-self:end;
+  margin:0; width:30em; height:26em;
+}
+
+body#product .bubblegum img{ width:22em; top:0; }
+body#product .product-info{
     display:block; position:relative; left:-10em;
     margin-top:-2em; font-size:0.9rem; color:#444;
-  }
-  body#product .product-info::after{ left:37em; }
+}
+body#product .product-info::after{ left:37em; }
 
-  body#product .allergenen,
-  body#product .nutri,
-  body#product .koop,
-  #product .aanbevolen{
+body#product .allergenen,
+body#product .nutri,
+body#product .koop,
+#product .aanbevolen{
     grid-column:1 / -1; width:min(1100px,95%); margin-inline:auto;
-  }
-  body#product .allergenen ul{ grid-template-columns: repeat(3, minmax(0,1fr)); }
-  body#product .nutri-metrics strong::after{ font-size:2.25rem; }
-  body#product .nutri-metrics li{ min-width:10rem; }
-  body#product .koop nav ul{
-    display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:1rem;
-  }
-  body#product .koop nav li{ margin:0; }
-  body#product .koop nav a{ width:100%; justify-content:space-between; }
-  #product .aanbevolen ul{ justify-content:center; gap:2rem; padding:1.5rem 0; }
-  #product .aanbevolen li{ padding:2rem 1.5rem; }
+}
+body#product .allergenen ul{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+body#product .nutri-metrics strong::after{ font-size:2.25rem; }
+body#product .nutri-metrics li{ min-width:10rem; }
+body#product .koop nav ul{
+  display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:1rem;
+}
+body#product .koop nav li{ margin:0; }
+body#product .koop nav a{ width:100%; justify-content:space-between; }
+#product .aanbevolen ul{ justify-content:center; gap:2rem; padding:1.5rem 0; }
+#product .aanbevolen li{ padding:2rem 1.5rem; }
 
-  /* Footer (samengevoegd uit je 64em blok) */
-  footer{ margin-top:0; max-width:none; padding:7rem 0 3rem; }
-  footer > section{ background:transparent; border-radius:0; padding:0; max-width:none; }
+  
+footer{ margin-top:0; max-width:none; padding:7rem 0 3rem; }
+footer > section{ background:transparent; border-radius:0; padding:0; max-width:none; }
 
-  footer > section:first-of-type{
-    display:grid;
-    grid-template-columns: repeat(3, minmax(0,1fr));
-    grid-template-areas:
-      "t1 t2 t3"
-      "l1 l2 l3";
-    gap: 1.25rem 5rem;
-    max-width: 75em; margin: 0 auto 3rem; align-items:start;
-  }
-  footer > section:first-of-type h2:nth-of-type(1){ grid-area:t1; }
-  footer > section:first-of-type h2:nth-of-type(2){ grid-area:t2; }
-  footer > section:first-of-type h2:nth-of-type(3){ grid-area:t3; }
-  footer > section:first-of-type ul:nth-of-type(1){ grid-area:l1; }
-  footer > section:first-of-type ul:nth-of-type(2){ grid-area:l2; }
-  footer > section:first-of-type ul:nth-of-type(3){ grid-area:l3; }
+footer > section:first-of-type{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  grid-template-areas:
+  "t1 t2 t3"
+  "l1 l2 l3";
+  gap: 1.25rem 5rem;
+  max-width: 75em; margin: 0 auto 3rem; align-items:start;
+}
+footer > section:first-of-type h2:nth-of-type(1){ grid-area:t1; }
+footer > section:first-of-type h2:nth-of-type(2){ grid-area:t2; }
+footer > section:first-of-type h2:nth-of-type(3){ grid-area:t3; }
+footer > section:first-of-type ul:nth-of-type(1){ grid-area:l1; }
+footer > section:first-of-type ul:nth-of-type(2){ grid-area:l2; }
+footer > section:first-of-type ul:nth-of-type(3){ grid-area:l3; }
 
-  footer h2{ margin:0 0 1rem; font-size: clamp(2rem, 3vw, 3rem); }
-  footer > section:first-of-type ul{
-    margin:0; padding:0; list-style:none; display:grid; gap:1rem;
-  }
-  footer > section:first-of-type ul li{
-    position:relative; padding-left:2rem; font-size:1.125rem;
-  }
-  footer > section:first-of-type ul li::before{
-    content:"➜"; position:absolute; left:0; top:50%; transform:translateY(-50%);
-    width:1.2em; height:1.2em; display:grid; place-items:center;
-    border-radius:50%; background:#ffed00; color:#c20e1a; font-weight:700; line-height:1;
-  }
+footer h2{ margin:0 0 1rem; font-size: clamp(2rem, 3vw, 3rem); }
+footer > section:first-of-type ul{
+  margin:0; padding:0; list-style:none; display:grid; gap:1rem;
+}
+footer > section:first-of-type ul li{
+  position:relative; padding-left:2rem; font-size:1.125rem;
+}
+footer > section:first-of-type ul li::before{
+  content:"➜"; position:absolute; left:0; top:50%; transform:translateY(-50%);
+  width:1.2em; height:1.2em; display:grid; place-items:center;
+  border-radius:50%; background:#ffed00; color:#c20e1a; font-weight:700; line-height:1;
+}
 
-  footer > section:nth-of-type(2){
-    max-width:75em; margin:0 auto 4rem; display:flex; gap:1rem; align-items:center;
-  }
-  footer > section:nth-of-type(2) img{
-    position:static; width:2.5em; height:2.5em; padding:1.25em; border-radius:0.5em; background:var(--color-pink);
-  }
+footer > section:nth-of-type(2){
+  max-width:75em; margin:0 auto 4rem; display:flex; gap:1rem; align-items:center;
+}
+footer > section:nth-of-type(2) img{
+  position:static; width:2.5em; height:2.5em; padding:1.25em; border-radius:0.5em; background:var(--color-pink);
+}
 
-  footer > section:nth-of-type(3) ul{
-    max-width:75em; margin:0 auto; display:flex; flex-wrap:wrap;
-    gap:1rem 2.5rem; justify-content:space-between; text-align:left;
-  }
-  footer > section:nth-of-type(3) ul li{ white-space:nowrap; font-size:1rem; 
-  }
+footer > section:nth-of-type(3) ul{
+  max-width:75em; margin:0 auto; display:flex; flex-wrap:wrap;
+  gap:1rem 2.5rem; justify-content:space-between; text-align:left;
+}
+footer > section:nth-of-type(3) ul li{ white-space:nowrap; font-size:1rem; 
+}
 }
 
 /* =========================
@@ -2011,4 +1994,16 @@ main > section:nth-of-type(7) ul li:hover {
 @media (min-width: 1440px) {
   footer > section:first-of-type{ max-width:80em; gap:1.5rem 6rem; }
   footer > section:nth-of-type(3) ul{ max-width:80em; }
+}
+
+
+/* =========================DARK MODE========================= */
+@media (prefers-color-scheme: dark) {
+  body, body#product{
+  background:#3f0000; 
+}
+
+  footer{
+    background-color: #5e000d;
+  }
 }
