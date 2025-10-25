@@ -13,6 +13,10 @@
   --radius: 1.25em;
   --card-width: 17.5em;
   --gap: 1rem;
+
+
+  /*darkmode*/
+  
 }
 
 
@@ -382,6 +386,7 @@ main > section:nth-of-type(5) button{
   background: none;
   padding: 0;
   cursor: pointer;
+  color:var(--color-white);
 }
 
 main > section:nth-of-type(5) ul li{
@@ -416,7 +421,7 @@ main > section:nth-of-type(5) ul li button i{
   margin:0;
   font-size:1.625em;
   line-height:1;
-  background:none;
+  background-color:#ffe500;
   width:auto;
   height:auto;
   display:block;
@@ -538,6 +543,10 @@ main > section:nth-of-type(7) ul li a{
   cursor: pointer;
 }
 
+.decor-shapes { 
+  display: none;
+ }
+
 /* ===== Footer ===== */
 footer {
   margin-top: -7.5em;
@@ -641,44 +650,48 @@ footer > section:nth-of-type(3) ul li::before {
 
 /* ===== PRODUCTPAGINA ===== */
 
+/* =========================
+   #product: Header + Main
+   (overflow-safe, mobile-first)
+   ========================= */
+
+/* Header */
 body#product header{
   display:flex;
   align-items:center;
   justify-content:space-between;
   padding:1em;
   position:relative;
-  z-index:10; 
+  z-index:10;
 }
-
 body#product header a.logo-link{
   display:inline-block;
   text-decoration:none;
 }
-
 body#product header .logo-link img{
   display:block;
   width:5.625em;
   height:auto;
 }
+body#product header p.breadcrumbs{ display:none; }
 
-/* === Section 1: bubbelgum === */
+/* === Section 1: bubblegum === */
 body#product .bubblegum{
   position: relative;
   display: grid;
   place-items: start center;
   width:17em;
   height:18em;
-  overflow: visible;
+  overflow: hidden;              /* FIX: clip pseudo-bg binnen de sectie */
 }
 body#product .bubblegum::before{
   content:"";
-  position: absolute; 
-  left: 58%;
+  position: absolute;
+  left: 50%;                     /* FIX: centreren (ipv 58%) */
   top: 120%;
-  width: 19.5em;
-  height: 16em;
   transform: translate(-50%, -50%);
-  /* background gradient bron: https://chatgpt.com/share/68dac4f8-8bb0-8004-a8f9-a4b685464154 */
+  width: min(19.5em, 100%);      /* FIX: nooit breder dan container */
+  height: 16em;
   background:
     linear-gradient(135deg, #f06292 25%, transparent 25%) -5px 0,
     linear-gradient(-135deg, #f06292 25%, transparent 25%) -5px 0,
@@ -691,420 +704,346 @@ body#product .bubblegum::before{
 body#product .bubblegum img{
   position: relative;
   left:2em;
+  top:4em;
   z-index: 1;
   width:14em;
   height:15em;
   display:block;
-  top:4em;
 }
 
-body#product header p.breadcrumbs {
-  display: none;
+/* === Main (algemeen) === */
+#product main,
+#product main > section{
+  box-sizing: border-box;
+  max-width: 100%;
+}
+#product main img{
+  max-width:100%;
+  height:auto;
+  display:block;
 }
 
-/* === Section 2: product-info === */
-body#product .product-info {
-  position:relative;
-  left:0.3em;
+/* === Section 2: product-info (overflow-safe) === */
+body#product .product-info{
+  position: relative;
+  left: 0.3em;
   background: #fff;
   box-shadow: 0 0.75em 1.875em rgba(0,0,0,.2);
   padding: 4.8125em 2.5em 4.6875em;
-  width:14em;
+  width: min(14em, 100%);        /* FIX: clamp */
+  max-width: 100%;
 }
 
 body#product .product-info h1{
-  color: #000;
-  font-family: 'Passion One', 'Bowlby One SC', sans-serif;
-  font-size: 3em;
-  line-height: 1.05;
-  margin: 0 0 0.5em 0;
-  text-transform: uppercase;
+  color:#000;
+  font-family:'Passion One','Bowlby One SC',sans-serif;
+  font-size:3em;
+  line-height:1.05;
+  margin:0 0 0.5em 0;
+  text-transform:uppercase;
 }
-
-body#product .product-info::after {
-  content: "";
-  position: absolute;
-  left:19em;
-  top: 40%;
-  transform: translateY(-50%);
-  width: 10px;
-  height: 40px;
-  background: #ffffff;
+/* Staartje: visueel buiten kaart, telt niet mee voor scrollbreedte */
+body#product .product-info::after{
+  content:"";
+  position:absolute;
+  right:0;                       /* FIX: aan rand van kaart */
+  top:40%;
+  transform: translate(100%, -50%); /* FIX: buiten kaart schilderen */
+  width:10px;
+  height:40px;
+  background:#ffffff;
   clip-path: polygon(0 0, 70% 0, 70% 40%, 100% 50%, 70% 60%, 70% 100%, 0 100%);
+  pointer-events:none;
   cursor: pointer;
 }
-
-body#product .product-info p {
-  font-family: var(--font-body, 'Raleway', sans-serif);
-  font-size: 1em;
-  line-height: 1.6;
-  color: #000000;
-  margin: 0.75em 0 0.375em 0;
+body#product .product-info p{
+  font-family:var(--font-body,'Raleway',sans-serif);
+  font-size:1em;
+  line-height:1.6;
+  color:#000;
+  margin:0.75em 0 0.375em 0;
 }
-
-body#product .product-info > a { 
-  position: relative; 
-  margin-left: 1em; 
+body#product .product-info > a{
+  position:relative;
+  margin-left:1em;
 }
-
-body#product .product-info > button {
-  display: flex;
+body#product .product-info > button{
+  display:flex;
   margin-left:2em;
   margin-top:2em;
-  background: none;
-  border: none;
-  color: #111;
-  font-family: var(--font-body);
-  font-size: 1rem;
-  text-decoration: 
-  underline; cursor: 
-  pointer; padding: 0;
+  background:none;
+  border:none;
+  color:#111;
+  font-family:var(--font-body);
+  font-size:1rem;
+  text-decoration:underline;
+  cursor:pointer;
+  padding:0;
 }
-
-body#product .product-info > button:hover { 
-  color: #c20e1a; 
-}
+body#product .product-info > button:hover{ color:#c20e1a; }
 
 /* === Section 3: allergenen === */
-body#product .allergenen {
+body#product .allergenen{
   position:relative;
-  width:16.6em;
+  width: min(16.6em, 100%);      /* FIX: clamp */
   left:0.5em;
-  padding-block: 0.125em 1.5em;
-  padding-inline: 1em;
-  border-radius: 0;         
-  background: #9e1136;
-  color: #fff;
+  padding-block:0.125em 1.5em;
+  padding-inline:1em;
+  border-radius:0;
+  background:#9e1136;
+  color:#fff;
   box-shadow: inset 0 0.5em 1.125em rgba(0,0,0,.15);
 }
-
-body#product .allergenen h2 {
-  margin: 0 0 0.75em;
-  font: 700 1.05rem var(--font-body);
+body#product .allergenen h2{
+  margin:0 0 0.75em;
+  font:700 1.05rem var(--font-body);
 }
-
-body#product .allergenen ul {
-  list-style: none;
-  margin: 0; 
-  padding: 0;
-  display: grid; 
-  gap: 1.125em;
+body#product .allergenen ul{
+  list-style:none;
+  margin:0; padding:0;
+  display:grid; gap:1.125em;
 }
-
-body#product .allergenen li {
-  display: grid;
-  grid-template-columns: 1.75em 1fr;
-  align-items: center; 
-  column-gap: 0.75em;
-  line-height: 1.5; 
-  font-size: 1.05rem;
+body#product .allergenen li{
+  display:grid;
+  grid-template-columns:1.75em 1fr;
+  align-items:center;
+  column-gap:0.75em;
+  line-height:1.5;
+  font-size:1.05rem;
 }
-
-body#product .allergenen li::before {
-  content: "✓";
-  display: inline-grid; 
-  place-items: center;
-  width: 1.5em; 
-  height: 1.5em; 
-  border-radius: 50%;
-  color: #fff; 
-  font-weight: 700;
+body#product .allergenen li::before{
+  content:"✓";
+  display:inline-grid; place-items:center;
+  width:1.5em; height:1.5em;
+  border-radius:50%;
+  color:#fff; font-weight:700;
 }
 
 /* === Section 4: nutri metrics === */
 body#product .nutri{
-  position: relative;
+  position:relative;
   padding:0;
   padding-top:5em;
   right:0.9rem;
   margin:0;
-  bottom: 2em;
+  bottom:2em;
   left:0.2em;
-  width: 19.4em;
-  overflow: hidden;
+  width: min(19.4em, 100%);      /* FIX: clamp */
+  overflow:hidden;
 }
-
 body#product .nutri-metrics{
-  display: flex;
-  overflow-x: auto;
-  gap: 2rem;
-  list-style: none;
-  width:17em; 
-  background-color: #fff; 
-  padding-top: 2em; 
-  margin: 0;
+  display:flex;
+  overflow-x:auto;
+  gap:2rem;
+  list-style:none;
+  width:100%;                    /* FIX: was 17em */
+  background:#fff;
+  padding-top:2em;
+  margin:0;
 }
-
 body#product .nutri-metrics li{
-  flex: 0 0 auto;
-  min-width: 9rem;
-  text-align: center;
-  font-size: 2rem;
-  position: relative;
+  flex:0 0 auto;
+  min-width:9rem;
+  text-align:center;
+  font-size:2rem;
+  position:relative;
   color:#ea0748;
 }
-
-/* bron befor en after date-unit: https://chatgpt.com/share/68da90a2-d184-8004-a436-4c3b1b71dfe5 */
 body#product .nutri-metrics li + li::before{
-  content: ""; 
-  position: absolute; 
-  left: -10%; 
-  top: .25rem; 
-  bottom: .25rem;
-  border-left: 4px dashed #e4165a;
+  content:"";
+  position:absolute;
+  left:-10%;
+  top:.25rem; bottom:.25rem;
+  border-left:4px dashed #e4165a;
 }
 body#product .nutri-metrics strong::after{
-  content: attr(data-unit); 
-  display: block;
-  font-size: 2rem; 
-  font-weight: 800;
+  content:attr(data-unit);
+  display:block;
+  font-size:2rem; font-weight:800;
 }
-
 body#product .nutri-metrics li::after{
-  content: attr(data-voedingswaarde);
-  display: block;
-  margin-top: .5rem;
-  font-size: 1rem;
-  color: #222;
+  content:attr(data-voedingswaarde);
+  display:block;
+  margin-top:.5rem;
+  font-size:1rem;
+  color:#222;
+}
+body#product .nutri p{
+  color:#000;
+  right:5em;
 }
 
-body#product .nutri p { 
-  color:black;
-  right:5em; 
+/* === Section 5: nutrition tabel === */
+#nutrition{
+  position:relative;
+  margin-right:2em;              /* let op: bij zeer smal scherm gereset hieronder */
+  margin-bottom:5em;
 }
-
-
-/* Section 5: voedingstabel */
-/* styling bron: /* styling van dit tabel gedaan met behulp van deepseek bron: https://chat.deepseek.com/share/xodxt4oa7gv7456is0 */
-#nutrition {
-  position: relative;
-  margin-right: 2em;
-  margin-bottom: 5em;
+#nutrition .card{
+  background:#fff;
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
+  margin-bottom:20px;
+  overflow:hidden;
+  border:1px solid #e0e0e0;
 }
-
-
-#nutrition .card {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  margin-bottom: 20px;
-  overflow: hidden;
-  border: 1px solid #e0e0e0;
+#nutrition summary{
+  padding:18px 24px;
+  background:#fff;
+  border-bottom:1px solid #e8e8e8;
+  font-weight:600;
+  cursor:pointer;
+  font-size:1.2em;
+  color:#000;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  transition:background-color .3s;
 }
-
-/* Summary titelbalk */
-#nutrition summary {
-  padding: 18px 24px;
-  background: #fff;
-  border-bottom: 1px solid #e8e8e8;
-  font-weight: 600;
-  cursor: pointer;
-  font-size: 1.2em;
-  color: #000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: background-color 0.3s;
+#nutrition summary:hover{ background:#fafafa; }
+#nutrition summary::after{
+  content:'ꜜ';
+  width:.6em; height:.6em;
+  transform:rotate(45deg);
+  margin-left:1em;
+  pointer-events:none;
 }
-#nutrition summary:hover {
-  background: #fafafa;
+#nutrition details[open] summary::after{ transform:rotate(-135deg); }
+#nutrition .sub{
+  padding:12px 24px 8px;
+  margin:0;
+  font-size:.9em;
+  color:#7f8c8d;
+  background:#fff;
+  border-bottom:1px solid #f0f0f0;
 }
-
-/* pijl bron:https://www.copyandpastesymbols.net/down-arrow-symbol.html */
-#nutrition summary::after {
-  content: 'ꜜ';
-  width: .6em ;
-  height: .6em ;
-  transform: rotate(45deg);
-  margin-left: 1em;
-  pointer-events: none;
+#nutrition table{
+  width:100%;
+  border-collapse:collapse;
+  margin:0;
 }
-#nutrition details[open] summary::after {
-  transform: rotate(-135deg);
+#nutrition th, #nutrition td{
+  padding:14px 24px;
+  text-align:left;
+  border-bottom:1px solid #f0f0f0;
 }
-
-/* Subtekst onder summary */
-#nutrition .sub {
-  padding: 12px 24px 8px;
-  margin: 0;
-  font-size: 0.9em;
-  color: #7f8c8d;
-  background-color: #fff;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-/* Tabel */
-#nutrition table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 0;
-}
-#nutrition th, 
-#nutrition td {
-  padding: 14px 24px;
-  text-align: left;
-  border-bottom: 1px solid #f0f0f0;
-}
-#nutrition th {
-  font-weight: 500;
-  color: #555;
-  width: 70%;
-}
-#nutrition td {
-  font-weight: 600;
-  color: #2c3e50;
-}
-#nutrition tr:last-child th, 
-#nutrition tr:last-child td {
-  border-bottom: none;
-}
-#nutrition tr:nth-child(even) {
-  background-color: #fff;
-}
-
-
-#nutrition .card p:not(.sub) {
-  padding: 18px 24px;
-  margin: 0;
-  line-height: 1.6;
-  color: #444;
-  background-color: #fff;
+#nutrition th{ font-weight:500; color:#555; width:70%; }
+#nutrition td{ font-weight:600; color:#2c3e50; }
+#nutrition tr:last-child th, #nutrition tr:last-child td{ border-bottom:none; }
+#nutrition tr:nth-child(even){ background:#fff; }
+#nutrition .card p:not(.sub){
+  padding:18px 24px;
+  margin:0;
+  line-height:1.6;
+  color:#444;
+  background:#fff;
 }
 
 /* === Section 6: koop === */
-body#product .koop {
-  display: flex;
+body#product .koop{
+  display:flex;
   flex-direction:column;
-  align-items: center;
-  width: 17em;
+  align-items:center;
+  width:17em;
   position:relative;
-  right:2em; 
+  right:2em;
   bottom:5em;
-  text-align: center; 
-  color: #fff;
+  text-align:center;
+  color:#fff;
 }
-
-body#product .koop h2 {
-  font-family: 'Passion One', 'Bowlby One SC', sans-serif;
-  font-size: 2rem;
-  font-weight: 700; 
-  margin-bottom: 1rem;
+body#product .koop h2{
+  font-family:'Passion One','Bowlby One SC',sans-serif;
+  font-size:2rem;
+  font-weight:700;
+  margin-bottom:1rem;
 }
-
-body#product .koop h3 { 
-  display: none; 
+body#product .koop h3{ display:none; }
+body#product .koop nav ul{
+  list-style:none;
+  padding:0; margin:0;
+  display:block;
 }
-
-body#product .koop nav ul { 
-  list-style: none; 
-  padding: 0;
-  margin: 0; 
-  display: block; 
+body#product .koop nav li{ margin-bottom:1rem; }
+body#product .koop nav a{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#fff;
+  width:11em;
+  border:4px solid #a0143e;
+  box-shadow:0 6px 0 #8b1037;
 }
-
-body#product .koop nav li { 
-  margin-bottom: 1rem;
+body#product .koop nav img{
+  height:2em; width:auto;
+  object-fit:contain;
+  background:#fff;
 }
-
-body#product .koop nav a {
-  display: flex;
-  justify-content:
-  space-between;
-  align-items: center;
-  background: #fff;
-  width: 11em;
-  border: 4px solid #a0143e;
-  box-shadow: 0 6px 0 #8b1037;
+body#product .koop nav a::after{
+  content:"➜";
+  color:#D81B60;
+  font-weight:bold;
+  display:flex;
 }
-body#product .koop nav img {
-  height: 2em;
-  width: auto;
-  object-fit: contain; 
-  background: #fff;
+body#product .koop > ul{
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+  list-style:none;
+  padding:0; margin:0;
+  text-align:left;
 }
-body#product .koop nav a::after { 
-  content: "➜"; 
-  color: #D81B60; 
-  font-weight: bold; 
-  display: flex; 
+body#product .koop > ul li{
+  display:block;
+  position:relative;
+  padding-left:2rem;
 }
-
-body#product .koop > ul {
-  display: flex;
-  flex-direction: 
-  column; gap: 1rem;
-  list-style: none;
-  padding: 0; 
-  margin: 0; 
-  text-align: left;
-}
-
-body#product .koop > ul li { 
-  display: block; 
-  position: relative;
-  padding-left: 2rem; 
-}
-
-body#product .koop > ul li::before { 
-  content: "✔"; 
-  position: absolute;
-  left: 0;
-  font-weight: 900; 
+body#product .koop > ul li::before{
+  content:"✔";
+  position:absolute;
+  left:0;
+  font-weight:900;
 }
 
 /* === Section 7: aanbevolen === */
-#product .aanbevolen { 
+#product .aanbevolen{
   position:relative;
-  margin:0;
-  padding:0;
-  text-align: start;
+  margin:0; padding:0;
+  text-align:start;
   color:#fff;
-  width:20em;
+  width: min(20em, 100%);        /* FIX: clamp */
 }
-
-#product .aanbevolen h2 { 
-  font-family: var(--font-title);
-  font-size: 2.1rem;
-  font-weight: 700;
-  margin: 0 0 2rem; 
+#product .aanbevolen h2{
+  font-family:var(--font-title);
+  font-size:2.1rem;
+  font-weight:700;
+  margin:0 0 2rem;
 }
-
-#product .aanbevolen ul { 
-  display: flex; 
-  gap: 2rem;
-  overflow-x: auto; 
-  padding: 1rem;
-  margin: 0;
-  list-style: none; 
+#product .aanbevolen ul{
+  display:flex; gap:2rem;
+  overflow-x:auto;
+  padding:1rem; margin:0;
+  list-style:none;
 }
-
-#product .aanbevolen ul::-webkit-scrollbar { 
-  display: none; 
-}
-
-#product .aanbevolen li { 
-  background: #f87a30;
+#product .aanbevolen ul::-webkit-scrollbar{ display:none; }
+#product .aanbevolen li{
+  background:#f87a30;
   color:#fff;
-  padding: 2rem 1rem;
-  text-align:center; 
+  padding:2rem 1rem;
+  text-align:center;
 }
-
-#product .aanbevolen li img { 
-  width:10em;
-  height:10em;
+#product .aanbevolen li img{
+  width:10em; height:10em;
   object-fit:contain;
   border-radius:50%;
   background:#ffe000;
   display:block;
-  margin:0 auto 1.5rem; 
+  margin:0 auto 1.5rem;
 }
-
-#product .aanbevolen li h3 {
-  font-family: var(--font-title);
+#product .aanbevolen li h3{
+  font-family:var(--font-title);
   font-size:1.5rem;
-  margin:0 0 1.5rem; 
+  margin:0 0 1.5rem;
 }
-
 #product .aanbevolen li a{
   display:inline-block;
   text-decoration:none;
@@ -1120,706 +1059,956 @@ body#product .koop > ul li::before {
 }
 
 
+
+
 /* ===== Responsiveness ===== */
 /* ====== ====== */
 
-@media (width:768px){
-  header {
+/* =========================
+   BASE (mobiel, default)
+   ========================= */
+/* Zet hier je algemene, device-onafhankelijke styles */
+
+/* =========================
+   DARK MODE
+   ========================= */
+@media (prefers-color-scheme: dark) {
+  body, body#product, section, header { background:#3f0000; color:#fff; }
+  a { color:#ffe031; }
+}
+
+/* =========================
+   TABLET (768–1024)
+   ========================= */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+   header {
     position: relative;
-    height: 105vh; 
+    right:1em;
   }
 
+  /* logo */
   header img:nth-of-type(1){
-    top: 1rem;
-    left: 1%;
+    top: 1rem; 
+    left: 50%;
     width:150px;
-    z-index: 3;
+    z-index:3;
   }
 
+  /* lachende vrouw */
   header img:nth-of-type(2){
-    position: relative;
-    top: 2vh;
-    left: 10vw;
-    height: 50em;
-    width:auto;
-    border-radius: 50%;
-    margin-right:5em;
-    z-index: 1;
+  position: relative;
+  top: 2vh;
+  right: 33vw;
+  height: auto;         /* laat de hoogte meegroeien */
+  width: auto;
+  transform: scale(1.3); /* 1.0 = normaal, 1.1 = 10% groter */
+  border-radius: 50%;
+  margin-right: 5em;
+  z-index: 1;
+  transition: transform 0.3s ease; 
   }
 
-  header > img[alt=""] {
-    display: block;     
-    position: relative;
-    bottom:2em;
-    left:9em;
+  header > img[alt=""]{
+    display:block; 
+    position:relative;
+    bottom:2em; 
+    left:9em; 
     width:2em;
-    z-index: 5;
-    pointer-events: none;
+    z-index:5; 
+    pointer-events:none;
   }
 
-  header > img[alt=""]:nth-of-type(3){
-    display:none;
+  header > img[alt=""]:nth-of-type(3) {
+    display: none;
+    
   }
-  
-  header > img[alt=""]:nth-of-type(4){ 
-    display:none;
+  header > img[alt=""]:nth-of-type(4){
+    display:block;
+    position:relative;
+    left:-20px;
+    top:27em;
+    width:80px
   }
   header > img[alt=""]:nth-of-type(5){ 
-    display:none;
-  }
-}
-
-@media (width: 768px) {
-  main section:nth-of-type(1) a {
+    display:block;
     position:relative;
-    left: 1em;
-    bottom:1em;
-    font-size: 2.5em;        
-    padding: 1em 3em;        
-    margin-top: 1.5em;     
+    left:-500px;
+    width:80px;
+    top:6em;
   }
 
-  main section:nth-of-type(1) a::before {
-    clip-path: polygon(
-      0 35%,   
-      100% 20%,
-      100% 100%,
-      0 100%
-    );
-  }
-}
-
-
-@media (width: 768px){
-  /* container */
-  main > section:nth-of-type(2){
-  color:#fff;
-  padding:28px 0 40px;
-}
-
-main > section:nth-of-type(2) h3{
-  position:relative;
-  right:2em;
-  bottom:2em;
-}
-
-main > section:nth-of-type(2) p{
-  position:relative;
-  left:20em;
-  bottom:14em;
-}
-
-main > section:nth-of-type(2) a{
-  position:relative;
-  bottom:7em;
-  left:5em;
-  width:80px;
-}
-
-main > section:nth-of-type(2) > ul{
-  list-style:none; margin:0; padding:0 24px;
-  display:flex; gap:24px;
-  overflow-x:auto; overscroll-behavior-x:contain;
-  scroll-snap-type:x mandatory; scroll-padding:24px;
-  -webkit-overflow-scrolling:touch;
-}
-main > section:nth-of-type(2) > ul::-webkit-scrollbar{ display:none; }
-
-
-main > section:nth-of-type(2) > ul > li{
-  position:relative;
-  min-width:min(100%,1080px);
-  border-radius:24px;
-  padding:56px 32px;
-  box-shadow:0 30px 60px rgba(0,0,0,.25);
-  scroll-snap-align:start;
-  display:grid; align-items:center;
-  gap:28px;
-  grid-template-columns:1.1fr 1fr;
-}
-}
-
-@media (width: 768px) {
- main > section:nth-of-type(3) {
-  flex: 0 0 var(--card-width);
-  border-radius: var(--radius);
-  color: var(--color-white);
-}
-
-main > section:nth-of-type(3) h2 {
-  padding-top: 2em;
-  font-family: var(--font-title);
-  font-size: 2.25em;
-  color: #fff;
-}
-
-main > section:nth-of-type(3) .zigzag {
-  position: absolute;
-  left: 50%;
-  margin-top: -1.875em;
-  width: 50px;
-  pointer-events: none;
-}
-
-main > section:nth-of-type(3) .circl {
-  position: absolute;
-  left: 57%;
-  margin-top: 13.75em;
-  width: 3.125em;
-  pointer-events: none;
-}
-
-
-main > section:nth-of-type(3) ul li a {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  color: inherit;
-}
-
-
-main > section:nth-of-type(3) ul li a img {
-  width: 200px;
-  height: 10em;
-  border-radius: 50%;
-  padding: 1.25em;
-  box-shadow: 0 0.625em 1.5625em rgba(0,0,0,0.25);
-  margin-bottom:  1rem;
-}
-
-
-main > section:nth-of-type(3) ul li:nth-of-type(1) a img { background: #f9a925; }
-main > section:nth-of-type(3) ul li:nth-of-type(2) a img { background: #beca2e; }
-main > section:nth-of-type(3) ul li:nth-of-type(3) a img { background: #7701b1; }
-main > section:nth-of-type(3) ul li:nth-of-type(4) a img { background: #f9a925; }
-main > section:nth-of-type(3) ul li:nth-of-type(5) a img { background: #ed1c25; }
-
-
-main > section:nth-of-type(3) ul li a p{
-  position:static !important;
-  inset:auto !important; 
-  transform:none !important;
-  margin:.25rem 0 0;          
-  order:1;
-}
-}
-
-@media (width:768px){
-  main > section:nth-of-type(4){
-    padding:6rem 2rem;
-  }
-  main > section:nth-of-type(4) h2{
-    font-size:2.5rem;
-  }
-  main > section:nth-of-type(4) p{
-   font-size:1.5rem;
-    position:relative;
-    left:-460px;
-    font-size:1.75rem;
-    bottom:2em;
-  }
-  main > section:nth-of-type(4) #orange-right{
-    max-width:180px;
-    position: relative;
-    left:20em;
-    width:60em;
-  }
-}
-
-
-@media (min-width:768px){
-  main > section:nth-of-type(6){
-    padding:5rem 2rem;
-  }
-  main > section:nth-of-type(6) h2{
-    font-size:2.25rem;
-  }
-  main > section:nth-of-type(6) p{
-    font-size:1.5rem;
-    text-align:center;
-    left:12em;
-    font-size:1.5rem;
-  }
-  }
-  main > section:nth-of-type(6) img{
-    width:64px;
-    margin:0 .75rem;
-  }
-
-
-
-@media (width: 768px) {
-  main > section:nth-of-type(7) h2 {
-    font-size: 3rem;
-    margin-bottom: 3rem;
-  }
-
-  main > section:nth-of-type(7) ul {
-    justify-content: center;
-    gap: 3rem;
-  }
-
-  main > section:nth-of-type(7) ul li {
-    padding: 3rem 2rem;
-  }
-
-  main > section:nth-of-type(7) ul li img {
-    width: 12em;
-    height: 12em;
-    margin-bottom: 2rem;
-  }
-
-  main > section:nth-of-type(7) ul li h3 {
-    font-size: 1.75rem;
-    margin-bottom: 2rem;
-  }
-
-  main > section:nth-of-type(7) ul li a {
-    font-size: 1.4rem;
-    padding: 1.2rem 2.5rem;
-  }
-}
-
-
-
-@media (width: 768px) {
-  .menu-btn {
-    position: fixed;
-    right: 3em; 
+  /* Menu knop fixed en groter op tablet */
+  .menu-btn{
+    position: fixed !important;
+    top:0.2rem;
+    right: 0.3em;
     background: #ffed00;
     color: #c20e1a;
     font-family: 'Passion One', 'Bowlby One SC', sans-serif;
-    font-size: 1.3rem;
+    font-size: 2rem; /* je wens */
     padding: 1rem 2rem;
-    border: none;
+    border: none; 
     cursor: pointer;
-    z-index: 9999;
+    z-index: 10001; 
     text-decoration: none;
     display: inline-block;
-    width:5em;
-    height:2em;
+    width:2.2em; 
+    height:1.2em;
   }
 
-  .menu-overlay {
+  /* Overlay (tablet blijft fullscreen) */
+  .menu-overlay{
     position: fixed;
     inset: 0;
-    background: #ffed00;
-    color: #c20e1a;
+    background: #ffed00; 
+    color:#c20e1a;
     display: none;
     z-index: 10000;
   }
+  .menu-overlay.open{ 
+    display:block;
+   }
 
-  .menu-overlay.open {
-    display: block;
-  }
+  /* CTA in section(1) */
 
-  .menu-overlay .close {
-    position: absolute;
-    top: 1.25em;
-    right: 1.25em;
-    font-size: 2rem;
-    background: transparent;
-    border: none;
-    color: #c20e1a;
-    cursor: pointer;
-  }
-
-  .menu-overlay ul {
-    list-style: none;
-    margin: 20vh 0 0 2rem;
-    padding: 0;
-    font-family: 'Passion One','Bowlby One SC',sans-serif;
-    font-size: 2rem;
-    font-weight: 700;
-  }
-
-  .menu-overlay a {
-    color: #c20e1a;
-    text-decoration: none;
-  }
-  .menu-overlay a:hover {
-    text-decoration: underline;
-  }
-}
-
-
-@media (min-width:64em){
-  footer{
-    margin-top: 0;
-    max-width: none;
-    padding: 7rem 0 3rem;
-  }
-
-
-  footer > section{
-    background: transparent;
-    border-radius: 0;
-    padding: 0;
-    max-width: none;
-  }
-
-  /* grid temlate gezet dmv chatgpt. prompt was: hoe kan ik mijn huidige footer zoals de footer van 
-  die laten zien(heb de chupa chups footer laten zien) na paar problemen is het wel gelukt door de
-  grid template */
-  footer > section:first-of-type{
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0,1fr));
-    grid-template-areas:
-      "t1 t2 t3"
-      "l1 l2 l3";
-    gap: 1.25rem 5rem;
-    max-width: 75em;
-    margin: 0 auto 3rem;
-    align-items: start;
-  }
-
-
-  footer > section:first-of-type h2:nth-of-type(1){ grid-area: t1; }
-  footer > section:first-of-type h2:nth-of-type(2){ grid-area: t2; }
-  footer > section:first-of-type h2:nth-of-type(3){ grid-area: t3; }
-
+  main section:nth-of-type(2){
+    overflow-x: hidden;
+  } 
   
-  footer > section:first-of-type ul:nth-of-type(1){ grid-area: l1; }
-  footer > section:first-of-type ul:nth-of-type(2){ grid-area: l2; }
-  footer > section:first-of-type ul:nth-of-type(3){ grid-area: l3; }
-
-  
-  footer h2{
-    margin: 0 0 1rem;
-    font-size: clamp(2rem, 3vw, 3rem);
+  main section:nth-of-type(1) a{
+    position:relative; 
+    left:9em; 
+    bottom:8em;
+    font-size: 2.5em; 
+    padding:0.6em 0.9em; 
+    width:7em; 
   }
-  footer > section:first-of-type ul{
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: grid;
-    gap: 1rem;
+  main section:nth-of-type(1) a::before{
+    clip-path: polygon(0 35%, 100% 20%, 100% 100%, 0 100%);
   }
 
-
-  footer > section:first-of-type ul li{
-    position: relative;
-    padding-left: 2rem;
-    font-size: 1.125rem;
-  }
-  footer > section:first-of-type ul li::before{
-    content: "➜";
-    position: absolute;
-    left: 0; top: 50%;
-    transform: translateY(-50%);
-    width: 1.2em; height: 1.2em;
-    display: grid; place-items: center;
-    border-radius: 50%;
-    background: #ffed00;
-    color: #c20e1a;
-    font-weight: 700;
-    line-height: 1;
+  main section:nth-of-type(1) h1{
+  position: relative;
+  margin-left: 9em;
+  bottom: 7em;
+  font-size:3.1em;
+  white-space: nowrap;     /* <- key fix */
+  display: inline-block;
+  max-width: none;
   }
 
+  main section:nth-of-type(1) P{
+  position: relative;
+  left: 18em;
+  bottom: 13em;
+  width: 20ch;                     /* breedte beperken voor leesbaarheid */
+  color: #fff;                     /* witte tekst op rode achtergrond */
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.4;
+  } 
 
-  footer > section:nth-of-type(2){
-    max-width: 75em; margin: 0 auto 4rem;
-    display: flex; gap: 1rem; align-items: center;
-  }
-  footer > section:nth-of-type(2) img{
-    position: static;
-    width: 2.5em; height: 2.5em;
-    padding: 1.25em; border-radius: 0.5em;
-    background: var(--color-pink);
-  }
-
-
-  footer > section:nth-of-type(3) ul{
-    max-width: 75em; margin: 0 auto;
-    display: flex; flex-wrap: wrap;
-    gap: 1rem 2.5rem; justify-content: space-between;
-    text-align: left;
-  }
-  footer > section:nth-of-type(3) ul li{
-    white-space: nowrap; font-size: 1rem;
-  }
-}
-
-
-@media (min-width:90em){
-  footer > section:first-of-type{ max-width: 80em; gap: 1.5rem 6rem; }
-  footer > section:nth-of-type(3) ul{ max-width: 80em; }
-}
-
-
-/************************************color schema***********************************************/
-/************************************Dark mode***********************************************/
-@media (prefers-color-scheme: dark) {
-  body {
-    background: #3f0000;
-    color: #ffffff;
-  }
-
-  
-  body#product {
-    background: #3f0000;
-    color: #ffffff;
-  }
-
-  
-  section {
-    background: #3f0000;
-    color: #ffffff;
-  }
-
-  header {
-    background: #3f0000;
-    color: #ffffff;
-  }
-
-  a {
-    color: #ffe031;
-  }
-}
-
-
-@media (min-width: 1024px) {
-  body#product header p.breadcrumbs {
-    display: block;
+  /* Section(2) container + carousel */
+  main > section:nth-of-type(2){ 
     position:relative;
-    right:65em;
-    margin-top: 1em;
-    font-size: 0.9rem;
-    color: #444;
+    bottom:5em;
+    color:#fff; 
+    padding:28px 0 40px; 
+  }
+  
+  main > section:nth-of-type(2) h3{ 
+    position:relative; 
+    right:2em; 
+    bottom:2em; 
+  }
+  
+  main > section:nth-of-type(2) p{ 
+    position:relative; 
+    left:15em; 
+    bottom:11em; 
+  }
+  main > section:nth-of-type(2) a{ 
+    position:relative;
+    bottom:5em; 
+    width:200px;  
+  }
+  
+  main > section:nth-of-type(2) > ul{
+    list-style:none;
+    margin:0; 
+    padding:0 24px;
+    display:flex; 
+    gap:24px; 
+    overflow-x:auto; 
+    overscroll-behavior-x:contain;
+    scroll-snap-type:x mandatory; 
+    scroll-padding:24px; 
+    -webkit-overflow-scrolling:touch;
+  }
+
+  main > section:nth-of-type(2) > ul::-webkit-scrollbar{
+     display:none; 
+    }
+
+  main > section:nth-of-type(2) > ul > li{
+    position:relative; 
+    min-width:min(680px);
+    border-radius:24px; 
+    padding:0;
+    scroll-snap-align:start; 
+    display:grid; 
+    align-items:center;
+    gap:28px;
+    grid-template-columns:1.1fr 1fr;
+  
+  }
+
+  /* Section(3) */
+  main > section:nth-of-type(3){ 
+    flex:0 0 var(--card-width); 
+    border-radius:var(--radius); 
+    color:var(--color-white);
+   }
+
+  main > section:nth-of-type(3) h2{ 
+    padding-top:2em; 
+    font-family:var(--font-title); 
+    font-size:2.25em; 
+    color:#fff; 
+  }
+
+  main > section:nth-of-type(3) .zigzag{ 
+    position:absolute; 
+    left:50%; 
+    margin-top:-1.875em; 
+    width:50px; 
+    pointer-events:none; 
+  }
+
+  main > section:nth-of-type(3) .circl{ 
+    position:absolute; 
+    left:57%; 
+    margin-top:13.75em; 
+    width:3.125em; 
+    pointer-events:none; 
+  }
+
+  main > section:nth-of-type(3) ul li a{
+    display:flex; 
+    flex-direction:column; 
+    align-items:center; 
+    text-decoration:none; 
+    color:inherit;
+  }
+
+  main > section:nth-of-type(3) ul li a img{
+    width:200px; 
+    height:10em; 
+    border-radius:50%; 
+    padding:1.25em;
+    box-shadow:0 0.625em 1.5625em rgba(0,0,0,0.25); 
+    margin-bottom:1rem;
+  }
+
+  main > section:nth-of-type(3) ul li:nth-of-type(1) a img { 
+    background:#f9a925; 
+  }
+  main > section:nth-of-type(3) ul li:nth-of-type(2) a img { background:#beca2e; }
+  main > section:nth-of-type(3) ul li:nth-of-type(3) a img { background:#7701b1; }
+  main > section:nth-of-type(3) ul li:nth-of-type(4) a img { background:#f9a925; }
+  main > section:nth-of-type(3) ul li:nth-of-type(5) a img { background:#ed1c25; }
+  main > section:nth-of-type(3) ul li a p{
+    position:static !important; 
+    inset:auto !important; 
+    transform:none !important;
+    margin:.25rem 0 0; 
+    order:1;
+  }
+
+  /* Section(4) */
+  main > section:nth-of-type(4){ 
+    padding:6rem 2rem; 
+  }
+  main > section:nth-of-type(4) h2{ 
+    font-size:2.5rem;
+   }
+
+  main > section:nth-of-type(4) p{
+    position:relative; 
+    left:3em; 
+    bottom:6em; 
+    font-size:1.75rem;
+  }
+
+ 
+  main > section:nth-of-type(4) #orange-right{
+    max-width:180px; 
+    position:relative; 
+    bottom:2em;
+    left:5em; 
+    width:60em;
+  }
+
+  /* Section(6) */
+  main > section:nth-of-type(6){ 
+    padding:5rem 2rem; 
+  }
+
+  main > section:nth-of-type(6) h2{ 
+    font-size:2.25rem;
+   }
+  main > section:nth-of-type(6) p{ 
+    font-size:1.5rem; 
+    text-align:center; 
+    left:12em; 
+  }
+
+  main > section:nth-of-type(6) img{ 
+    width:45px; 
+    margin:0 .75rem;
+   }
+
+
+  /* Section(7) */
+  main > section:nth-of-type(7) h2{ 
+    font-size:3rem;
+    margin-bottom:3rem; 
+  }
+
+  main > section:nth-of-type(7) ul{ 
+    justify-content:start; 
+    gap:3rem; 
+  }
+
+  main > section:nth-of-type(7) ul li{ 
+    padding:3rem 2rem; 
+  }
+
+  main > section:nth-of-type(7) ul li img{ 
+    width:12em; 
+    height:12em; 
+    margin-bottom:2rem; 
+  }
+
+  main > section:nth-of-type(7) ul li h3{ 
+    font-size:1.75rem; 
+    margin-bottom:2rem;
+   }
+
+main > section:nth-of-type(7) ul li a{ 
+  font-size:1.4rem; 
+  padding:1.2rem 2.5rem; 
+  }
+  
+.decor-shapes { 
+  display: none;
+ }
+
+  /* Productpagina (tablet) */
+  body#product header{ 
+    padding:1.5em 2em;
+   }
+
+  body#product .bubblegum{ 
+    width:26em; 
+    height:24em;
+    margin:0 auto 1.5em; 
+    place-items:center; 
+  }
+
+  body#product .bubblegum img{ 
+    width:20em;
+    height:auto; 
+    left:0; 
+    top:1em; 
+  }
+
+  body#product .bubblegum::before{
+    left:50%; 
+    top:105%; 
+    width:28em; 
+    height:18em; 
+    transform:translate(-50%,-50%);
+  }
+
+  body#product .product-info{ 
+    width:32em; 
+    margin:1.5em auto 0; 
+    left:0;
+   }
+
+  body#product .product-info::after{ 
+    left: calc(100% + 1rem);
+   }
+
+  body#product .allergenen{ 
+    width:30em; 
+    margin:2em 
+    auto 0; 
+    left:0; 
+  }
+
+  body#product .nutri{ 
+    width:90%; 
+    margin:2em auto 0; 
+    padding-top:3em; 
+    left:0; 
+    right:0; 
+    bottom:0; 
+  }
+
+  body#product .nutri-metrics{ 
+    width:100%; 
+    gap:3rem; 
+  }
+
+  body#product .nutri p{ 
+    text-align:right; 
+    right:0; 
+  }
+
+  body#product .koop{
+    width:28em; 
+    margin:3em auto 0; 
+    right:0; 
+    bottom:0; }
+  body#product .koop nav a{ 
+    width:14em;
+   }
+
+  #product .aanbevolen{ 
+    width:90%; 
+    margin:3em auto 0; 
+  }
+
+  #product .aanbevolen ul{ 
+    justify-content:center; 
+    gap:3rem; 
+  }
+
+  footer {
+    max-width: 80%; 
+    margin-top: -90px;
+    padding: 5rem 3rem;
+  }
+
+  footer > section:first-of-type h2:nth-of-type(1){
+     position:relative;
+     right:5em;
+     font-weight:700;
+     font-size:30px;
+     overflow-wrap: break-word;
+     padding:0;
+     margin:0;
+   }
+
+  footer > section:first-of-type h2:nth-of-type(1) + ul {
+  position:relative;
+  right:9em;
+  top:2em;
+}
+
+  footer > section:first-of-type h2:nth-of-type(2) {
+    position:relative;
+    left:5.7em;
+    bottom:5.7em;
+    font-weight:700;
+}
+
+footer > section:first-of-type h2:nth-of-type(2) + ul{
+  position:relative;
+  left:11.5em;
+  bottom:11em;
+}
+
+/* Derde lijst bij de derde h2 */
+
+  footer > section:first-of-type h2:nth-of-type(3) {
+    position:relative;
+    right:4.7em;
+    bottom:5.7em;
+    font-weight:700;
+}
+
+  footer > section:first-of-type h2:nth-of-type(3) + ul{
+    position:relative;
+    right:9em;
+    bottom:10em
+  }
+
+  footer > section:nth-of-type(2) img:first-of-type{
+    position:relative;
+    right:17em;
+    top:-210px;
+    max-width: 4em;
+    height:4em;
+  }
+
+  footer > section:nth-of-type(2) img:last-of-type{
+    position:relative;
+    right:16em;
+    top:-210px;
+    max-width: 4em;
+    height:4em;
   }
 }
 
+/* =========================
+   DESKTOP (≥1024)
+   ========================= */
 @media (min-width: 1024px) {
-  header {
-    position: relative;
+
+  /* Header desktop layout */
+  header{ 
+    position: relative; 
     min-height: 85vh;
   }
 
-  
   header img:nth-of-type(1){
-    position: absolute;
-    top: 1.2rem;
+    position: absolute; 
+    top: 1.2rem; 
     left: 60%;
     transform: translateX(-50%);
     width: clamp(120px, 10vw, 160px);
     z-index: 3;
   }
 
-  
   header img:nth-of-type(2){
-    position: absolute;
-    top: -12vh;
-    left: -14vw;
-    height: 115vh;
-    width: auto;
-    object-fit: cover;
+    position: absolute; 
+    top: -10vh; 
+    left: -3vw;
+    height: 110vh; 
+    width:auto; 
     border-radius: 50%;
-    clip-path: circle(52vh at 30vw 48vh);
-    z-index: 1;
+    z-index:1;
   }
-
-  
   header img:nth-of-type(3),
   header img:nth-of-type(4),
   header img:nth-of-type(5){
-    display: block;         
-    position: absolute;     
-    z-index: 4;            
-    pointer-events: none; 
+    display:block; 
+    position:absolute;
+    z-index:4;
+    pointer-events:none;
+  }
+
+  header img:nth-of-type(3){
+    top:8rem; 
+    right:2rem;
+  }
+  header img:nth-of-type(4){ 
+    top:35rem; 
+    left:80rem; 
+  }
+
+  header img:nth-of-type(5){ 
+    top:22rem; 
+    left:31rem; 
+    width:6em;
   }
 
   
-  header img:nth-of-type(3){ 
-    top: 8rem; 
-    right: 2rem; }
-  header img:nth-of-type(4){ 
-    top: 50rem; 
-    left: 80rem; }
-  header img:nth-of-type(5){ 
-    top: 18rem; 
-    left: 29rem; }
-}
-
- 
-  .menu-btn{
-    position: absolute;   
-    top: 1.2rem;
-    right: 1.2rem;
-    padding: 0.9rem 1.6rem;
-    font-size: 1.1rem;
-    z-index: 4;
-  }
-
-
-@media (min-width: 900px) {
-  .menu-btn { display: none; }         
-  .menu-overlay { 
-    all: unset;                    
+  .menu-btn{ display: none; }
+  .menu-overlay{
+    all: unset;
     position: absolute;
-    top: 40px;
-    right: 40px;
-    width: 320px;
-    background: #ffed00;
-    color: #c20e1a;
+    top: 40px; right: 40px; width: 320px;
+    background: #ffed00; color:#c20e1a;
     font-family: 'Passion One','Bowlby One SC',sans-serif;
     box-shadow: 0 6px 20px rgba(0,0,0,.2);
     padding-bottom: 1rem;
-    display: block !important;         
+    display: block !important;
+  }
+  .menu-overlay .close{ display:none; }
+  .menu-overlay ul{
+    list-style:none; margin:0; padding:1rem;
+    display:grid; gap:10px; font-size:1.5rem;
+  }
+  .menu-overlay ul li:last-child{
+    margin-top:10px; padding-top:10px; border-top:2px solid rgba(0,0,0,.2);
   }
 
-  .menu-overlay .close { display: none; } 
+main section:nth-of-type(1) h1{
+  position: relative;
+  bottom: 3.4em;
+  left: 0;
+  font-size: 5em;
+  margin-left: 6em;
+}
+main { 
+  position: relative; 
+  z-index: 0; 
+  overflow: visible; 
+}
 
-  .menu-overlay ul {
+
+main section:nth-of-type(1) P{
+  position: relative;
+  bottom:12em;
+  font-size:1.4em;
+  left: 0;
+  margin-left: 30em;
+}
+
+main section:nth-of-type(1) a{
+  position: relative;
+  bottom: 11em;
+  left: 0;
+  margin-left: 20em;
+  width: 12%;
+  margin-top: 4em;
+  background-color: #ffeb00; /* geel */
+  color: #c8102e; /* rood voor tekst */
+  display: block;
+  text-align: center;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  font-size:2rem;
+  font-weight: bold;
+  clip-path: polygon(
+    3% 45%,
+    100% 30%,
+    98% 100%,
+    2% 100%
+  );
+}
+
+
+  main > section:nth-of-type(2){ 
+    position:relative;
+    bottom:5em;
+    color:#fff; 
+    padding:28px 0 40px; 
+  }
+  
+  main > section:nth-of-type(2) h3{ 
+    position:relative; 
+    right:2em; 
+    bottom:2em; 
+  }
+  
+  main > section:nth-of-type(2) p{ 
+    position:relative; 
+    left:15em; 
+    bottom:11em; 
+  }
+  main > section:nth-of-type(2) a{ 
+    position:relative;
+    bottom:5em; 
+    width:200px;  
+  }
+  
+  main > section:nth-of-type(2) > ul{
+    list-style:none;
+    margin:0; 
+    padding:0 24px;
+    display:flex; 
+    gap:24px; 
+    overflow-x:auto; 
+    overscroll-behavior-x:contain;
+    scroll-snap-type:x mandatory; 
+    scroll-padding:24px; 
+    -webkit-overflow-scrolling:touch;
+  }
+
+  main > section:nth-of-type(2) > ul::-webkit-scrollbar{
+     display:none; 
+    }
+
+  main > section:nth-of-type(2) > ul > li{
+    position:relative; 
+    min-width:min(680px);
+    border-radius:24px; 
+    padding:0;
+    scroll-snap-align:start; 
+    display:grid; 
+    align-items:center;
+    gap:28px;
+    grid-template-columns:1.1fr 1fr;
+  
+  }
+
+  /* --- swipebare rij --- */
+
+main > section:nth-of-type(3){
+  position:relative;
+  bottom:10em;
+}
+main > section:nth-of-type(3) h2 {
+  font-size: 4em;
+}
+main > section:nth-of-type(3) ul{
+ position:relative;
+  bottom:19em;
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;               
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 1rem 1rem;
+  scrollbar-width: none;           
+}
+main > section:nth-of-type(3) ul::-webkit-scrollbar{
+  display:none; 
+} 
+
+
+main > section:nth-of-type(3) ul li{
+  flex: 0 0 auto;
+  scroll-snap-align: center;      /* midden van het scherm */
+  scroll-snap-stop: always;       /* stop op elk item tijdens snel scrollen */
+  transition: transform 0.01s ease;
+}
+main > section:nth-of-type(3) ul li:hover {
+   transform: scale(1.08);
+}
+
+/* --- GROTERE cirkels/kaarten --- */
+main > section:nth-of-type(3) ul li a img{
+  /* maak groter, schaalt netjes mee */
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  padding: 1.25em;
+  box-shadow: 0 10px 25px rgba(0,0,0,.25);
+  margin-bottom: 1rem;
+}
+
+/* (optioneel) tekst iets groter onder de cirkel */
+main > section:nth-of-type(3) ul li a p{
+  font-size:3em;
+  margin-top: .25rem;
+}
+
+main > section:nth-of-type(3) .zigzag{
+  position:relative;
+  bottom:17em;
+  width:50px;
+}
+
+main > section:nth-of-type(3) .circl{
+  position:relative;
+  bottom:17em;
+  width:70px;
+  left:1200px;
+}
+
+main > section:nth-of-type(4){
+  position:relative;
+  bottom: 20em;
+}
+
+#orange-right{
+  position:relative;
+  left:26em;
+  width:17%;
+}
+
+main > section:nth-of-type(4) > p{
+  position:relative;
+  bottom:12em;
+  left:6em;
+}
+
+main > section:nth-of-type(5){
+  position: relative;
+  bottom:20em;
+}
+
+main > section:nth-of-type(5) button{
+  font-size:2rem;
+  transition: transform 0.01s ease;
+}
+main > section:nth-of-type(5) ul li:hover {
+  transform: scale(1.08);
+  background-color: #ff0000;
+}
+
+main > section:nth-of-type(6){
+  position:relative;
+  bottom:15em;
+  right:7em;
+}
+main > section:nth-of-type(6) h2{
+  font-size:4em;
+}
+
+main > section:nth-of-type(6) p{
+  position:relative;
+  left:2em;
+  font-size:1.6em;
+}
+
+main > section:nth-of-type(6) img{
+  position:relative;
+  left:2.5em;
+  width:7%;
+  height:4%;
+}
+
+main > section:nth-of-type(7) {
+  position: relative;   /* referentie voor absolute children */
+  z-index: 10;          /* indien nodig boven naburige secties */
+}
+main > section:nth-of-type(7) h2{
+  position:relative;
+  bottom:3em;
+}
+main > section:nth-of-type(7) ul {
+  position:relative;
+  bottom:4em;
+  justify-content: center;
+  gap: 3rem;
+}
+
+main > section:nth-of-type(7) ul li {
+  flex: 0 0 340px;
+  height: 390px; 
+  transition: transform 0.01s ease;
+}
+
+main > section:nth-of-type(7) ul li a img {
+  width: 230px;
+  height: 230px;
+}
+
+main > section:nth-of-type(7) ul li:hover {
+  transform: scale(1.08);
+}
+
+.decor-shapes {
+    display: block;
+    position: absolute;
+    inset: 0;     
+    z-index: 3;          
+    pointer-events: none;
+  }
+
+  .decor-shapes ul {
+    position: relative;
+    width: 100%;
+    height: 100%;
     list-style: none;
     margin: 0;
-    padding: 1rem;
-    display: grid;
-    gap: 10px;
-    font-size: 1.5rem;
+    padding: 0;
   }
 
-  .menu-overlay ul li:last-child {
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 2px solid rgba(0,0,0,.2);
-  }
-}
-
-
-
-
-/* ===== Tablet (≥768px) ===== */
-@media (min-width: 768px) {
-  
-  body#product header { padding: 1.5em 2em; }
-
- 
-  body#product .bubblegum {
-    width: 26em;
-    height: 24em;
-    margin: 0 auto 1.5em;
-    place-items: center;
-  }
-  body#product .bubblegum img {
-    width: 20em;
-    height: auto;
-    left: 0; top: 1em;
-  }
-  body#product .bubblegum::before {
-    left: 50%;
-    top: 105%;
-    width: 28em;
-    height: 18em;
-    transform: translate(-50%, -50%);
+  .decor-shapes li {
+    position: absolute;
   }
 
-  /* Productkaart */
-  body#product .product-info {
-    width: 32em;
-    margin: 1.5em auto 0;
-    left: 0;      
-  }
-  body#product .product-info::after { left: calc(100% + 1rem); }
-
-  /* Allergenen */
-  body#product .allergenen {
-    width: 30em;
-    margin: 2em auto 0;
-    left: 0;               /* offset reset */
-  }
-
-  /* Nutri metrics */
-  body#product .nutri {
-    width: 90%;
-    margin: 2em auto 0;
-    padding-top: 3em;
-    left: 0; 
-    right: 0; 
-    bottom: 0;
-  }
-  body#product .nutri-metrics { width: 100%; gap: 3rem; }
-  body#product .nutri p { text-align: right; right: 0; }
-
-  /* Koop nu */
-  body#product .koop {
-    width: 28em;
-    margin: 3em auto 0;
-    right: 0; 
-    bottom: 0;  
-  }
-  body#product .koop nav a { width: 14em; }
-
-  
-  #product .aanbevolen {
-    width: 90%;
-    margin: 3em auto 0;
-  }
-  #product .aanbevolen ul { justify-content: center; gap: 3rem; }
-}
-
-/* ===== Laptop (≥1024px) ===== */
-@media (min-width: 1024px) {
- 
-  main {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    gap: 3rem;
-    align-items: start;
-    padding: 2rem 4rem;
-  }
-
-  body#product .bubblegum {
-    position:relative;
-    bottom:20em;
-    justify-self: end;
-    margin: 0; width: 30em; height: 26em;
-  }
-  body#product .bubblegum img { width: 22em; top: 0; }
-
-  body#product .product-info {
+  .decor-shapes img {
     display: block;
-    position:relative;
-    left:-10em;
-    margin-top: -2em;
-    font-size: 0.9rem;
-    color: #444;
+    width: 80px;
+    height: auto;
   }
- body#product .product-info::after { 
-  left:37em }
 
- 
+  /* posities nu relatief aan section 7 (geen vh/vw maar %) */
+  .decor-shapes li:nth-of-type(1) {
+    top: 84%;
+    left: 3%;
+    transform: rotate(-12deg);
+  }
+
+  .decor-shapes li:nth-of-type(2) {
+    top: 98%;
+    left: 50%;
+  }
+
+  .decor-shapes li:nth-of-type(3) {
+    top: 90%;
+    left: 92%;
+  }
+
+  /* Product grid / main */
+  /* Breadcrumbs product */
+  body#product header p.breadcrumbs{
+    display:block; position:relative; right:65em; margin-top:1em;
+    font-size:0.9rem; color:#444;
+  }
+
+  body#product .bubblegum{
+    position:relative; bottom:20em; justify-self:end;
+    margin:0; width:30em; height:26em;
+  }
+  body#product .bubblegum img{ width:22em; top:0; }
+  body#product .product-info{
+    display:block; position:relative; left:-10em;
+    margin-top:-2em; font-size:0.9rem; color:#444;
+  }
+  body#product .product-info::after{ left:37em; }
+
   body#product .allergenen,
   body#product .nutri,
   body#product .koop,
-  #product .aanbevolen {
-    grid-column: 1 / -1;
-    width: min(1100px, 95%);
-    margin-inline: auto;
+  #product .aanbevolen{
+    grid-column:1 / -1; width:min(1100px,95%); margin-inline:auto;
+  }
+  body#product .allergenen ul{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+  body#product .nutri-metrics strong::after{ font-size:2.25rem; }
+  body#product .nutri-metrics li{ min-width:10rem; }
+  body#product .koop nav ul{
+    display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:1rem;
+  }
+  body#product .koop nav li{ margin:0; }
+  body#product .koop nav a{ width:100%; justify-content:space-between; }
+  #product .aanbevolen ul{ justify-content:center; gap:2rem; padding:1.5rem 0; }
+  #product .aanbevolen li{ padding:2rem 1.5rem; }
+
+  /* Footer (samengevoegd uit je 64em blok) */
+  footer{ margin-top:0; max-width:none; padding:7rem 0 3rem; }
+  footer > section{ background:transparent; border-radius:0; padding:0; max-width:none; }
+
+  footer > section:first-of-type{
+    display:grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    grid-template-areas:
+      "t1 t2 t3"
+      "l1 l2 l3";
+    gap: 1.25rem 5rem;
+    max-width: 75em; margin: 0 auto 3rem; align-items:start;
+  }
+  footer > section:first-of-type h2:nth-of-type(1){ grid-area:t1; }
+  footer > section:first-of-type h2:nth-of-type(2){ grid-area:t2; }
+  footer > section:first-of-type h2:nth-of-type(3){ grid-area:t3; }
+  footer > section:first-of-type ul:nth-of-type(1){ grid-area:l1; }
+  footer > section:first-of-type ul:nth-of-type(2){ grid-area:l2; }
+  footer > section:first-of-type ul:nth-of-type(3){ grid-area:l3; }
+
+  footer h2{ margin:0 0 1rem; font-size: clamp(2rem, 3vw, 3rem); }
+  footer > section:first-of-type ul{
+    margin:0; padding:0; list-style:none; display:grid; gap:1rem;
+  }
+  footer > section:first-of-type ul li{
+    position:relative; padding-left:2rem; font-size:1.125rem;
+  }
+  footer > section:first-of-type ul li::before{
+    content:"➜"; position:absolute; left:0; top:50%; transform:translateY(-50%);
+    width:1.2em; height:1.2em; display:grid; place-items:center;
+    border-radius:50%; background:#ffed00; color:#c20e1a; font-weight:700; line-height:1;
   }
 
- 
-  body#product .allergenen ul {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  footer > section:nth-of-type(2){
+    max-width:75em; margin:0 auto 4rem; display:flex; gap:1rem; align-items:center;
+  }
+  footer > section:nth-of-type(2) img{
+    position:static; width:2.5em; height:2.5em; padding:1.25em; border-radius:0.5em; background:var(--color-pink);
   }
 
- 
-  body#product .nutri-metrics strong::after { font-size: 2.25rem; }
-  body#product .nutri-metrics li { min-width: 10rem; }
-
- 
-  body#product .koop nav ul {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1rem;
+  footer > section:nth-of-type(3) ul{
+    max-width:75em; margin:0 auto; display:flex; flex-wrap:wrap;
+    gap:1rem 2.5rem; justify-content:space-between; text-align:left;
   }
-  body#product .koop nav li { margin: 0; }
-  body#product .koop nav a { width: 100%; justify-content: space-between; }
-
-  #product .aanbevolen ul {
-    justify-content: center;
-    gap: 2rem;
-    padding: 1.5rem 0;
+  footer > section:nth-of-type(3) ul li{ white-space:nowrap; font-size:1rem; 
   }
-  #product .aanbevolen li { padding: 2rem 1.5rem; }
+}
+
+/* =========================
+   LARGE DESKTOP (≥1440)
+   ========================= */
+@media (min-width: 1440px) {
+  footer > section:first-of-type{ max-width:80em; gap:1.5rem 6rem; }
+  footer > section:nth-of-type(3) ul{ max-width:80em; }
 }
