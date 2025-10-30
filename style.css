@@ -647,6 +647,9 @@ footer > section:nth-of-type(3) ul li::before {
 }
 
 /* ===== PRODUCTPAGINA ===== */
+body#product{ 
+  background:#e61f5c
+}
 
 body#product header{
   display:flex;
@@ -662,46 +665,66 @@ body#product header a.logo-link{
 }
 body#product header .logo-link img{
   display:block;
-  width:5.625em;
+  width:4em;
   height:auto;
 }
 body#product header p.breadcrumbs{ display:none; }
 
 /* === Section 1: bubblegum === */
-body#product .bubblegum{
-  position: relative;
+body#product .bubblegum {
+  position: relative; 
   display: grid;
   place-items: start center;
-  width:17em;
-  height:18em;
-  overflow: hidden;
+  width: 27em;
+  height: 18em;
+  overflow: visible; 
 }
-body#product .bubblegum::before{
-  content:"";
+
+
+body#product .bubblegum::before {
+  content: "";
   position: absolute;
-  left: 50%;  
+  left: 50vw;  
   top: 120%;
   transform: translate(-50%, -50%);
-  width: min(19.5em, 100%);
+  width: clamp(19.5em, 97%, 270%);
   height: 16em;
+
   background:
     linear-gradient(135deg, #f06292 25%, transparent 25%) -5px 0,
     linear-gradient(-135deg, #f06292 25%, transparent 25%) -5px 0,
     linear-gradient(45deg, #ec407a 25%, transparent 25%),
     linear-gradient(-45deg, #ec407a 25%, transparent 25%);
-  background-size: 10px 20px;
+  background-size: 9px 10px;
   background-color: #f8bbd0;
+
   z-index: 0;
 }
-body#product .bubblegum img{
-  position: relative;
-  left:2em;
-  top:4em;
-  z-index: 1;
-  width:14em;
-  height:15em;
-  display:block;
+
+/* afbeelding zelf */
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-80px);
+    filter: drop-shadow(0 0 0 rgba(0,0,0,0));
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    filter: drop-shadow(0 0.75em 1.2em rgba(0,0,0,0.35));
+  }
 }
+
+body#product .bubblegum img {
+  position: relative;
+  top: 5em;
+  z-index: 1;
+  width: 13em;
+  height: 14em;
+  display: block;
+  animation: slideInFromLeft 0.9s ease-out forwards;
+}
+
 
 /* === Main (algemeen) === */
 #product main,
@@ -716,14 +739,16 @@ body#product .bubblegum img{
 }
 
 /* === Section 2: product-info === */
-body#product .product-info{
+.product-info {
   position: relative;
-  left: 0.3em;
   background: #fff;
+  text-align: center;
+  width: clamp(16em, 95vw, 30em);
+  min-height: 60vh;
+  max-height: 170vh;
+  margin-inline: auto;
   box-shadow: 0 0.75em 1.875em rgba(0,0,0,.2);
-  padding: 4.8125em 2.5em 4.6875em;
-  width: min(14em, 100%);        /* FIX: clamp */
-  max-width: 100%;
+  padding: 4em 2em 4em;
 }
 
 body#product .product-info h1{
@@ -735,19 +760,6 @@ body#product .product-info h1{
   text-transform:uppercase;
 }
 
-body#product .product-info::after{
-  content:"";
-  position:absolute;
-  right:0;                    
-  top:40%;
-  transform: translate(100%, -50%); 
-  width:10px;
-  height:40px;
-  background:#ffffff;
-  clip-path: polygon(0 0, 70% 0, 70% 40%, 100% 50%, 70% 60%, 70% 100%, 0 100%);
-  pointer-events:none;
-  cursor: pointer;
-}
 body#product .product-info p{
   font-family:var(--font-body,'Raleway',sans-serif);
   font-size:1em;
@@ -777,7 +789,7 @@ body#product .product-info > button:hover{ color:#c20e1a; }
 /* === Section 3: allergenen === */
 body#product .allergenen{
   position:relative;
-  width: min(16.6em, 100%);  
+  width: clamp(16em, 95vw, 30em);
   left:0.5em;
   padding-block:0.125em 1.5em;
   padding-inline:1em;
@@ -820,7 +832,7 @@ body#product .nutri{
   margin:0;
   bottom:2em;
   left:0.2em;
-  width: min(19.4em, 100%); 
+  width: clamp(16em, 97vw, 30em); 
   overflow:hidden;
 }
 body#product .nutri-metrics{
@@ -861,15 +873,18 @@ body#product .nutri-metrics li::after{
   color:#222;
 }
 body#product .nutri p{
-  color:#000;
-  right:5em;
+  color:#000000;
+  text-align:start;
+  width: clamp(16em, 97vw, 30em);
+  font-weight:200;
 }
 
 /* === Section 5: nutrition tabel === */
 #nutrition{
   position:relative;
-  margin-right:2em;         
+  right:0.5em;
   margin-bottom:5em;
+  width: clamp(16em, 97vw, 30em);
 }
 #nutrition .card{
   background:#fff;
@@ -936,7 +951,7 @@ body#product .koop{
   display:flex;
   flex-direction:column;
   align-items:center;
-  width:17em;
+  width: clamp(16em, 97vw, 30em);
   position:relative;
   right:2em;
   bottom:5em;
@@ -981,8 +996,10 @@ body#product .koop > ul{
   flex-direction:column;
   gap:1rem;
   list-style:none;
-  padding:0; margin:0;
+  padding:0; 
+  margin:1em;
   text-align:left;
+  
 }
 body#product .koop > ul li{
   display:block;
@@ -999,10 +1016,9 @@ body#product .koop > ul li::before{
 /* === Section 7: aanbevolen === */
 #product .aanbevolen{
   position:relative;
-  margin:0; padding:0;
+  width: clamp(16em, 97vw, 60em);
   text-align:start;
-  color:#fff;
-  width: min(20em, 100%);      
+  color:#fff;    
 }
 #product .aanbevolen h2{
   font-family:var(--font-title);
@@ -1011,7 +1027,7 @@ body#product .koop > ul li::before{
   margin:0 0 2rem;
 }
 #product .aanbevolen ul{
-  display:flex; gap:2rem;
+  display:flex; gap:1rem;
   overflow-x:auto;
   padding:1rem; margin:0;
   list-style:none;
@@ -1376,89 +1392,170 @@ main > section:nth-of-type(7) ul li a{
   
 .decor-shapes { 
   display: none;
- }
+}
 
   /* Productpagina (tablet) */
-  body#product header{ 
-    padding:1.5em 2em;
-   }
+body#product header .logo-link img{
+  width:6.7em;
+  left:350px;
+}
+body#product header p.breadcrumbs {
+  display: block;
+  position:relative;
+  right:28em;
+  top:12em;
+  font-weight:bolder;
+}
 
-  body#product .bubblegum{ 
-    width:26em; 
-    height:24em;
-    margin:0 auto 1.5em; 
-    place-items:center; 
+body#product .bubblegum {
+  position: relative;
+  width: max-content; /* laat de container meegroeien */
+}
+
+body#product .bubblegum img{ 
+  width:30em;
+  height:30em; 
+  top:14em; 
+  left:9em
+}
+
+body#product .bubblegum::before{
+  top:110%; 
+  width:20em; 
+  height:14em; 
+}
+
+body#product .product-info{ 
+  position: relative;
+  top:24.8em;
+  width:46em;
+  height:auto;
+  left:0;
+}
+
+body#product .product-info p{
+  position:relative;
+  top:1em;
+  font-size:1.2em;
+  left:0.2em;
+}
+
+body#product .product-info > a{
+  top:2em;
+}
+
+body#product .product-info > button{
+  position:relative;
+  left:17em;
+  top:2em;
+}
+body#product .allergenen{ 
+  position:relative;
+  top:24.9em;
+  left:1em;
+  width:46em;
+}
+ body#product .allergenen ul{
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+}
+
+body#product .nutri{ 
+  width:95%; 
+  margin:2em auto 0; 
+  padding-top:3em; 
+  left:0; 
+  right:0; 
+  top:20em; 
+}
+
+
+
+body#product .nutri p{ 
+  position:relative;
+  left:-60px; 
+  bottom:0.1em;
+  font-size:20px;
+}
+
+body#product #nutrition{
+  position:relative;
+  top:22em;
+  width:95%;
+}
+
+body#product .koop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: clamp(16em, 97vw, 60em);
+  margin-inline: auto;
+  text-align: center;
+  color: #fff;
+  position:relative;
+  top:17em;
+}
+
+body#product .koop h2 {
+  font-family: 'Passion One', 'Bowlby One SC', sans-serif;
+  position:relative;
+  font-size: 2rem;
+  font-weight: 700;
+  bottom: 1em;
+
+}
+
+
+body#product .koop nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  flex-wrap: wrap;           /* zorgt dat ze naar nieuwe rij springen */
+  justify-content: center;   /* centreert horizontaal */
+  gap: 1.5rem;               /* ruimte tussen de blokken */
+}
+
+ #product .aanbevolen{ 
+    top:20em; 
   }
 
-  body#product .bubblegum img{ 
-    width:20em;
-    height:auto; 
-    left:0; 
-    top:1em; 
-  }
+ #product .aanbevolen h2 { 
+  font-size: 3rem;
+  margin-bottom: 3rem; 
+}
 
-  body#product .bubblegum::before{
-    left:50%; 
-    top:105%; 
-    width:28em; 
-    height:18em; 
-    transform:translate(-50%,-50%);
-  }
+#product .aanbevolen ul { 
+  justify-content: start; 
+  gap: 3rem; 
+}
 
-  body#product .product-info{ 
-    width:32em; 
-    margin:1.5em auto 0; 
-    left:0;
-   }
+#product .aanbevolen ul li { 
+  padding: 3rem 2rem; 
+}
 
-  body#product .product-info::after{ 
-    left: calc(100% + 1rem);
-   }
+#product .aanbevolen ul li img { 
+  width: 12em; 
+  height: 12em; 
+  margin-bottom: 2rem; 
+}
 
-  body#product .allergenen{ 
-    width:30em; 
-    margin:2em 
-    auto 0; 
-    left:0; 
-  }
+#product .aanbevolen ul li h3 { 
+  font-size: 1.75rem; 
+  margin-bottom: 2rem;
+}
 
-  body#product .nutri{ 
-    width:90%; 
-    margin:2em auto 0; 
-    padding-top:3em; 
-    left:0; 
-    right:0; 
-    bottom:0; 
-  }
+#product .aanbevolen ul li a { 
+  font-size: 1.4rem; 
+  padding: 1.2rem 2.5rem; 
+}
 
-  body#product .nutri-metrics{ 
-    width:100%; 
-    gap:3rem; 
-  }
-
-  body#product .nutri p{ 
-    text-align:right; 
-    right:0; 
-  }
-
-  body#product .koop{
-    width:28em; 
-    margin:3em auto 0; 
-    right:0; 
-    bottom:0; }
-  body#product .koop nav a{ 
-    width:14em;
-   }
-
-  #product .aanbevolen{ 
-    width:90%; 
-    margin:3em auto 0; 
-  }
-
-  #product .aanbevolen ul{ 
-    justify-content:center; 
-    gap:3rem; 
-  }
+#product footer{
+  position:relative;
+  top:24.6em;
+}
 
   footer {
     max-width: 80%; 
@@ -1801,9 +1898,9 @@ main > section:nth-of-type(5){
 
 main > section:nth-of-type(5) button{
   font-size:2rem;
-  transition: transform 0.01s ease;
 }
 main > section:nth-of-type(5) ul li:hover {
+  transition: transform 0.01s ease;
   transform: scale(1.08);
   background-color: #ff0000;
 }
