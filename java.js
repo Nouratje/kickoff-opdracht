@@ -95,3 +95,4 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initiale sync
   syncToViewport();
 });
+
