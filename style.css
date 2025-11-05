@@ -349,7 +349,9 @@ main > section:nth-of-type(4) > p {
 main > section:nth-of-type(4) > p::after {
   content:"";
   position:absolute; left:0; right:0; bottom:0;
-  height:0.1875em; background: currentColor; border-radius:0.125em;
+  height:0.1875em; 
+  background: currentColor; 
+  border-radius:0.125em;
 }
 
 
@@ -702,6 +704,7 @@ body#product .bubblegum::before {
 }
 
 
+/* === bron:https://www.w3schools.com/cssref/atrule_keyframes.php === */
 @keyframes slideInFromLeft {
   0% {
     opacity: 0;
@@ -857,7 +860,8 @@ body#product .nutri-metrics li + li::before{
   content:"";
   position:absolute;
   left:-10%;
-  top:.25rem; bottom:.25rem;
+  top:.25rem; 
+  bottom:.25rem;
   border-left:4px dashed #e4165a;
 }
 body#product .nutri-metrics strong::after{
@@ -907,7 +911,10 @@ body#product .nutri p{
   align-items:center;
   transition:background-color .3s;
 }
-#nutrition summary:hover{ background:#fafafa; }
+#nutrition summary:hover{ 
+  background:#fafafa; 
+}
+
 #nutrition summary::after{
   content:'ꜜ';
   width:.6em; height:.6em;
@@ -915,7 +922,10 @@ body#product .nutri p{
   margin-left:1em;
   pointer-events:none;
 }
-#nutrition details[open] summary::after{ transform:rotate(-135deg); }
+#nutrition details[open] summary::after{ 
+  transform:rotate(-135deg); 
+}
+
 #nutrition .sub{
   padding:12px 24px 8px;
   margin:0;
@@ -935,10 +945,25 @@ body#product .nutri p{
   text-align:left;
   border-bottom:1px solid #ff0000;
 }
-#nutrition th{ font-weight:500; color:#555; width:70%; }
-#nutrition td{ font-weight:600; color:#2c3e50; }
-#nutrition tr:last-child th, #nutrition tr:last-child td{ border-bottom:none; }
-#nutrition tr:nth-child(even){ background:#fff; }
+#nutrition th{ 
+  font-weight:500; 
+  color:#555;
+  width:70%; 
+}
+
+#nutrition td{
+  font-weight:600; 
+  color:#2c3e50; 
+}
+
+#nutrition tr:last-child th, #nutrition tr:last-child td{ 
+  border-bottom:none;
+}
+
+#nutrition tr:nth-child(even){
+   background:#fff; 
+}
+
 #nutrition .card p:not(.sub){
   padding:18px 24px;
   margin:0;
@@ -965,13 +990,19 @@ body#product .koop h2{
   font-weight:700;
   margin-bottom:1rem;
 }
-body#product .koop h3{ display:none; }
+body#product .koop h3{ 
+  display:none; 
+}
+
 body#product .koop nav ul{
   list-style:none;
   padding:0; margin:0;
   display:block;
 }
-body#product .koop nav li{ margin-bottom:1rem; }
+body#product .koop nav li{
+  margin-bottom:1rem; 
+}
+
 body#product .koop nav a{
   display:flex;
   justify-content:space-between;
@@ -1033,7 +1064,9 @@ body#product .koop > ul li::before{
   padding:1rem; margin:0;
   list-style:none;
 }
-#product .aanbevolen ul::-webkit-scrollbar{ display:none; }
+#product .aanbevolen ul::-webkit-scrollbar{ 
+  display:none; 
+}
 #product .aanbevolen li{
   background:#f87a30;
   color:#fff;
@@ -1041,12 +1074,14 @@ body#product .koop > ul li::before{
   text-align:center;
 }
 #product .aanbevolen li img{
-  width:10em; height:10em;
+  width:10em; 
+  height:10em;
   object-fit:contain;
   border-radius:50%;
   background:#ffe000;
   display:block;
-  margin:0 auto 1.5rem;
+  margin:0 
+  auto 1.5rem;
 }
 #product .aanbevolen li h3{
   font-family:var(--font-title);
@@ -1090,9 +1125,9 @@ header img:nth-of-type(1){
   position: relative;
   top: 2vh;
   right: 33vw;
-  height: auto;         /* laat de hoogte meegroeien */
+  height: auto;     
   width: auto;
-  transform: scale(1.3); /* 1.0 = normaal, 1.1 = 10% groter */
+  transform: scale(1.3);
   border-radius: 50%;
   margin-right: 5em;
   z-index: 1;
@@ -1137,7 +1172,7 @@ header > img[alt=""]:nth-of-type(5){
   background: #ffed00;
   color: #c20e1a;
   font-family: 'Passion One', 'Bowlby One SC', sans-serif;
-  font-size: 2rem; /* je wens */
+  font-size: 2rem;
   padding: 1rem 2rem;
   border: none; 
   cursor: pointer;
@@ -1185,7 +1220,7 @@ main section:nth-of-type(1) h1{
   margin-left: 9em;
   bottom: 7em;
   font-size:3.1em;
-  white-space: nowrap;     /* <- key fix */
+  white-space: nowrap; 
   display: inline-block;
   max-width: none;
 }
@@ -1194,8 +1229,8 @@ main section:nth-of-type(1) P{
   position: relative;
   left: 18em;
   bottom: 13em;
-  width: 20ch;                     /* breedte beperken voor leesbaarheid */
-  color: #fff;                     /* witte tekst op rode achtergrond */
+  width: 20ch;                    
+  color: #fff; 
   font-family: 'Raleway', sans-serif;
   font-size: 1.5rem;
   line-height: 1.4;
@@ -1414,7 +1449,7 @@ body#product header p.breadcrumbs {
 
 body#product .bubblegum {
   position: relative;
-  width: max-content; /* laat de container meegroeien */
+  width: max-content;
 }
 
 body#product .bubblegum img{ 
@@ -1593,7 +1628,7 @@ footer > section:first-of-type h2:nth-of-type(2) + ul{
   bottom:11em;
 }
 
-/* Derde lijst bij de derde h2 */
+
 
 footer > section:first-of-type h2:nth-of-type(3) {
   position:relative;
@@ -1851,10 +1886,11 @@ main > section:nth-of-type(3) ul li{
   flex: 0 0 auto;
   scroll-snap-align: center;
   scroll-snap-stop: always; 
-  transition: transform 0.01s ease;
+  
 }
 main > section:nth-of-type(3) ul li:hover {
-   transform: scale(1.08);
+  transition: transform 0.01s ease-in-out;
+  transform: scale(1.08);
 }
 
 
@@ -1912,7 +1948,7 @@ main > section:nth-of-type(5) button{
   font-size:2rem;
 }
 main > section:nth-of-type(5) ul li:hover {
-  transition: transform 0.01s ease;
+ transition: transform 0.01s ease-in-out;
   transform: scale(1.08);
   background-color: #ff0000;
 }
@@ -1957,7 +1993,7 @@ main > section:nth-of-type(7) ul {
 main > section:nth-of-type(7) ul li {
   flex: 0 0 340px;
   height: 390px; 
-  transition: transform 0.01s ease;
+ 
 }
 
 main > section:nth-of-type(7) ul li a img {
@@ -1966,6 +2002,7 @@ main > section:nth-of-type(7) ul li a img {
 }
 
 main > section:nth-of-type(7) ul li:hover {
+  transition: transform 0.01s ease-in-out;
   transform: scale(1.08);
 }
 
